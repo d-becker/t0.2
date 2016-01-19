@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1452885533 source:/home/danielbecker/Documents/Programming/C++/Tetris0.2/src/BasicShape.cpp
+	"BasicShape.h"
+	<algorithm>
+	<stdexcept>
+	"Block.h"
+
+1452885524 /home/danielbecker/Documents/Programming/C++/Tetris0.2/include/BasicShape.h
+	"Shape.h"
+
+1452871916 /home/danielbecker/Documents/Programming/C++/Tetris0.2/include/Shape.h
+	<memory>
+	<vector>
+	"Coords.h"
+
+1452796505 /home/danielbecker/Documents/Programming/C++/Tetris0.2/include/Coords.h
+
+1452794314 /home/danielbecker/Documents/Programming/C++/Tetris0.2/include/Block.h
+	<memory>
+

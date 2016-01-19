@@ -3,6 +3,3 @@ obj/
 nbproject/
 licence.txt
 *~
-*.cbp
-*.layout
-*.depend
