@@ -112,7 +112,7 @@ int BasicShape::getBBoxSize() const {
 
 bool BasicShape::isValid(int vertical, int horizontal) const {
   return vertical >= 0 && horizontal >= 0
-      && vertical <= getBBoxSize() && horizontal <= getBBoxSize();
+      && vertical < getBBoxSize() && horizontal < getBBoxSize();
 }
 
 shared_ptr<Block> BasicShape::get(int vertical, int horizontal) const {

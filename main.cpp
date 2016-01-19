@@ -17,6 +17,8 @@
 
 #include <iostream>
 
+#include "UnitTest++.h"
+
 #include "Block.h"
 #include "GameBoard.h"
 #include "Shape.h"
@@ -25,6 +27,5 @@ using namespace std;
 
 int main()
 {
-  cout << "Hello world!" << endl;
-  return 0;
+  return UnitTest::RunAllTests();
 }
