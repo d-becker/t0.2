@@ -69,7 +69,6 @@ class GameBoard
      */
     virtual bool hasLanded() const = 0;
 
-
     /**
      * Locks the shape on the board, that is, the blocks of the shape are
      * assigned to the positions on the board where they currently are.
