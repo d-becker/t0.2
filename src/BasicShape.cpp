@@ -44,7 +44,7 @@ public:
     checkDuplicates(blocks);
 
     for (unsigned int i = 0; i < coords.size(); ++i) {
-      m_blocks.emplace_back(coords.at(i), blocks.at(i)->clone());
+      m_blocks.emplace_back(coords.at(i), blocks.at(i)/*->clone()*/);
     }
   }
 

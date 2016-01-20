@@ -57,12 +57,26 @@ class Board
      *
      * \return A pointer to the \c Block at the given position.
      */
-    virtual std::shared_ptr<Block> get(int vertical, int horizontal) const = 0;
+    virtual std::shared_ptr<Block> get(int vertical, int horizontal) = 0;
 
     /**
      * The same as calling get(coords.getVertical(), coords.getHorizontal()).
      */
-    virtual std::shared_ptr<Block> get(const Coords& coords) const {
+    virtual std::shared_ptr<Block> get(const Coords& coords) {
+      return get(coords.getVertical(), coords.getHorizontal());
+    }
+
+    /**
+     * Const version of \c get.
+     */
+    virtual std::shared_ptr<const Block> get(int vertical, int horizontal) const
+                                                                            = 0;
+
+    /**
+     * The same as calling the const version of
+     * get(coords.getVertical(), coords.getHorizontal()).
+     */
+    virtual std::shared_ptr<const Block> get(const Coords& coords) const {
       return get(coords.getVertical(), coords.getHorizontal());
     }
 
@@ -96,7 +110,7 @@ class Board
      */
     virtual bool isValid(int vertical, int horizontal) const {
       return vertical >= 0 && horizontal >= 0
-          && vertical  getHeight() && horizontal <= getWidth();
+          && vertical < getHeight() && horizontal < getWidth();
     }
 
     /**
