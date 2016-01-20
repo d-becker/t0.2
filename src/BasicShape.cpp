@@ -144,7 +144,7 @@ vector<Coords> BasicShape::getBlockPositions() const {
 
 void BasicShape::rotateRight() {
   int bbox_size = m_pimpl->m_bbox_size;
-  for (PIMPL::BlockWithPos b : m_pimpl->m_blocks) {
+  for (PIMPL::BlockWithPos& b : m_pimpl->m_blocks) {
     Coords& coords = b.pos;
     int vertical = coords.getVertical();
     int horizontal = coords.getHorizontal();
@@ -155,7 +155,7 @@ void BasicShape::rotateRight() {
 
 void BasicShape::rotateLeft() {
   int bbox_size = m_pimpl->m_bbox_size;
-  for (PIMPL::BlockWithPos b : m_pimpl->m_blocks) {
+  for (PIMPL::BlockWithPos& b : m_pimpl->m_blocks) {
     Coords& coords = b.pos;
     int vertical = coords.getVertical();
     int horizontal = coords.getHorizontal();

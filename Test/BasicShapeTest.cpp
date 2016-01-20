@@ -1,3 +1,6 @@
+#include <algorithm>
+#include <iostream>
+
 #include "UnitTest++.h"
 
 #include "BasicBlock.h"
@@ -7,6 +10,25 @@ using namespace std;
 
 namespace {
 
+// Helper functions.
+
+// Checks whether a vector contains an element.
+template <typename T>
+bool contains(const vector<T>& vec, const T& elem) {
+  return std::find(vec.begin(), vec.end(), elem) != vec.end();
+}
+
+// Checks if two vectors contain the same elements.
+template <typename T>
+bool same_elements(const vector<T>& vec1, const vector<T>& vec2) {
+  if (vec1.size() != vec2.size()) {return false;}
+  for (const T& elem : vec1) {
+    if (!contains(vec2, elem)) {return false;}
+  }
+  return true;
+}
+
+// Tests.
 SUITE(getBBoxSize)
 {
   const int bbox_size = 4;
@@ -174,7 +196,104 @@ SUITE(getBlockPositions)
     vector<Coords>& exp_coords = coords;
     const vector<Coords>& res_coords = bsh->getBlockPositions();
     bool exp_res = true;
-    bool res = (exp_coords == res_coords);
+    bool res = same_elements(exp_coords, res_coords);
+    CHECK_EQUAL(exp_res, res);
+  }
+}
+
+SUITE(rotateRight)
+{
+  const int bbox_size = 3;
+  vector<Coords> coords {Coords(0, 0), Coords(0, 1),
+                         Coords(1, 0), Coords(2, 0)};
+  const shared_ptr<Block> bblock = make_shared<BasicBlock>();
+  vector<shared_ptr<Block>> blocks{bblock->clone(), bblock->clone(),
+                                   bblock->clone(), bblock->clone()};
+
+  class BasicShapeFixture {
+  public:
+    shared_ptr<Shape> bsh = make_shared<BasicShape>(bbox_size, coords, blocks);
+  };
+
+  TEST_FIXTURE(BasicShapeFixture, rotateRight0)
+  {
+    bsh->rotateRight();
+    vector<Coords> exp_coords {Coords(0, 0), Coords(0, 1),
+                               Coords(0, 2), Coords(1, 2)};
+    vector<Coords> res_coords = bsh->getBlockPositions();
+
+    bool exp_res = true;
+    bool res = same_elements(exp_coords, res_coords);
+    CHECK_EQUAL(exp_res, res);
+  }
+}
+
+SUITE(rotateLeft)
+{
+  const int bbox_size = 3;
+  vector<Coords> coords {Coords(0, 0), Coords(0, 1),
+                         Coords(1, 0), Coords(2, 0)};
+  const shared_ptr<Block> bblock = make_shared<BasicBlock>();
+  vector<shared_ptr<Block>> blocks{bblock->clone(), bblock->clone(),
+                                   bblock->clone(), bblock->clone()};
+
+  class BasicShapeFixture {
+  public:
+    shared_ptr<Shape> bsh = make_shared<BasicShape>(bbox_size, coords, blocks);
+  };
+
+  TEST_FIXTURE(BasicShapeFixture, rotateLeftt0)
+  {
+    bsh->rotateLeft();
+    vector<Coords> exp_coords {Coords(1, 0), Coords(2, 0),
+                               Coords(2, 1), Coords(2, 2)};
+    vector<Coords> res_coords = bsh->getBlockPositions();
+
+    bool exp_res = true;
+    bool res = same_elements(exp_coords, res_coords);
+    CHECK_EQUAL(exp_res, res);
+  }
+}
+
+// Checking whether two rotations in the opposite direction give back
+// the original state.
+SUITE(rotateBack)
+{
+  const int bbox_size = 3;
+  vector<Coords> coords {Coords(0, 0), Coords(0, 1),
+                         Coords(1, 0), Coords(2, 0)};
+  const shared_ptr<Block> bblock = make_shared<BasicBlock>();
+  vector<shared_ptr<Block>> blocks{bblock->clone(), bblock->clone(),
+                                   bblock->clone(), bblock->clone()};
+
+  class BasicShapeFixture {
+  public:
+    shared_ptr<Shape> bsh = make_shared<BasicShape>(bbox_size, coords, blocks);
+  };
+
+  TEST_FIXTURE(BasicShapeFixture, rotateBackfromRight0)
+  {
+    bsh->rotateRight();
+    bsh->rotateLeft();
+    vector<Coords> exp_coords {Coords(0, 0), Coords(0, 1),
+                               Coords(1, 0), Coords(2, 0)};
+    vector<Coords> res_coords = bsh->getBlockPositions();
+
+    bool exp_res = true;
+    bool res = same_elements(exp_coords, res_coords);
+    CHECK_EQUAL(exp_res, res);
+  }
+
+  TEST_FIXTURE(BasicShapeFixture, rotateBackfromLeft0)
+  {
+    bsh->rotateLeft();
+    bsh->rotateRight();
+    vector<Coords> exp_coords {Coords(0, 0), Coords(0, 1),
+                               Coords(1, 0), Coords(2, 0)};
+    vector<Coords> res_coords = bsh->getBlockPositions();
+
+    bool exp_res = true;
+    bool res = same_elements(exp_coords, res_coords);
     CHECK_EQUAL(exp_res, res);
   }
 }

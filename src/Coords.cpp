@@ -79,3 +79,11 @@ bool operator==(const Coords& lhs, const Coords& rhs) {
   return lhs.getVertical() == rhs.getVertical()
       && lhs.getHorizontal() == rhs.getHorizontal();
 }
+
+Coords operator+(Coords lhs, const Coords& rhs) {
+  return lhs+=rhs;
+}
+
+Coords operator-(Coords lhs, const Coords& rhs) {
+  return lhs-=rhs;
+}

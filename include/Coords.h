@@ -45,5 +45,7 @@ class Coords
 };
 
 bool operator==(const Coords& lhs, const Coords& rhs);
+Coords operator+(Coords lhs, const Coords& rhs);
+Coords operator-(Coords lhs, const Coords& rhs);
 
 #endif // COORDS_H
