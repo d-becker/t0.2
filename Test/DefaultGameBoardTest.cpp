@@ -211,8 +211,46 @@ SUITE(hasLanded)
     CHECK_EQUAL(exp_res, res);
   }
 
+}
 
+SUITE(whereWouldLand)
+{
+  vector<Coords> coords {Coords(0, 0), Coords(0, 1),
+                         Coords(1, 0), Coords(2, 0)};
+  const shared_ptr<Block> bblock = make_shared<BasicBlock>();
+  class DefaultGameBoardFixture {
+  public:
+    DefaultGameBoardFixture() {
+      const int bbox_size = 3;
+      vector<shared_ptr<Block>> blocks{bblock->clone(), bblock->clone(),
+                                       bblock->clone(), bblock->clone()};
 
+      BasicShape s = BasicShape(bbox_size, coords, blocks);
+      shared_ptr<Shape> shape = make_shared<BasicShape>(s);
+
+      dgb->setCurrentShape(shape);
+    }
+
+    shared_ptr<Board> board = make_shared<BasicBoard>(18, 10);
+    shared_ptr<DefaultGameBoard>  dgb = make_shared<DefaultGameBoard>(board);
+  };
+
+  TEST_FIXTURE(DefaultGameBoardFixture, whereWouldLand_EmptyBoard)
+  {
+    dgb->setCurrentShapePosition(Coords(0, 0));
+    Coords exp_res = Coords(board->getHeight() - 1 - 2, 0);
+    Coords res = dgb->whereWouldLand();
+    CHECK_EQUAL(exp_res, res);
+  }
+
+  TEST_FIXTURE(DefaultGameBoardFixture, whereWouldLand_NonEmptyBoard)
+  {
+    dgb->setCurrentShapePosition(Coords(0, 0));
+    board->set(board->getHeight() - 1, 0, bblock);
+    Coords exp_res = Coords(board->getHeight() - 1 - 2 - 1, 0);
+    Coords res = dgb->whereWouldLand();
+    CHECK_EQUAL(exp_res, res);
+  }
 }
 
 }

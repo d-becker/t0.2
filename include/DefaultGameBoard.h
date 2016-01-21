@@ -26,6 +26,7 @@ class DefaultGameBoard : public GameBoard
 
     virtual bool isAtValidPos() const override;
     virtual bool hasLanded() const override;
+    virtual Coords whereWouldLand() const override;
 
     virtual void lock() override;
     virtual void removeFilledRows() override;
@@ -39,6 +40,10 @@ class DefaultGameBoard : public GameBoard
     virtual void moveLeft() override;
     virtual void moveRight() override;
   private:
+    std::vector<Coords> getAbsolutePositions(std::shared_ptr<Shape> shape,
+                                             const Coords& coords) const;
+    bool isAtValidPos(std::shared_ptr<Shape> shape, const Coords& coords) const;
+    bool hasLanded(std::shared_ptr<Shape> shape, const Coords& coords) const;
     void move(const Coords& offset);
   private:
     std::shared_ptr<Board> m_board;

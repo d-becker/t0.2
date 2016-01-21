@@ -17,6 +17,8 @@
 
 #include "Coords.h"
 
+using namespace std;
+
 Coords::Coords(int vertical, int horizontal)
   : m_vertical(vertical), m_horizontal(horizontal)
 {
@@ -86,4 +88,10 @@ Coords operator+(Coords lhs, const Coords& rhs) {
 
 Coords operator-(Coords lhs, const Coords& rhs) {
   return lhs-=rhs;
+}
+
+ostream& operator<<(ostream& os, const Coords& coords) {
+  os << "Coords(" << coords.getVertical() << ", "
+     << coords.getHorizontal() << ")";
+  return os;
 }
