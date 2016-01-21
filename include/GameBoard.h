@@ -31,7 +31,7 @@ class GameBoard
   public:
     virtual ~GameBoard() {}
 
-    virtual std::shared_ptr<const Board> getBoard() = 0;
+    virtual std::shared_ptr<const Board> getBoard() const = 0;
 
     virtual std::shared_ptr<const Shape> getCurrentShape() const = 0;
     virtual void setCurrentShape(std::shared_ptr<Shape> shape) = 0;
@@ -82,12 +82,46 @@ class GameBoard
      */
     virtual void removeFilledRows() = 0;
 
+    /**
+     * Rotates the current shape left if the resulting state of the shape is
+     * valid. If it is not (at least one block of the current shape is outside
+     * the board or occupies a non-empty cell), no change is made.
+     */
     virtual void rotateLeft() = 0;
+
+    /**
+     * Rotates the current shape right if the resulting state of the shape is
+     * valid. If it is not (at least one block of the current shape is outside
+     * the board or occupies a non-empty cell), no change is made.
+     */
     virtual void rotateRight() = 0;
 
+    /**
+     * Moves the current shape one block up if the resulting state of the shape
+     * is valid. If it is not (at least one block of the current shape is
+     * outside the board or occupies a non-empty cell), no change is made.
+     */
     virtual void moveUp() = 0;
+
+    /**
+     * Moves the current shape one block down if the resulting state of the
+     * shape is valid. If it is not (at least one block of the current shape is
+     * outside the board or occupies a non-empty cell), no change is made.
+     */
     virtual void moveDown() = 0;
+
+    /**
+     * Moves the current shape one block left if the resulting state of the
+     * shape is valid. If it is not (at least one block of the current shape is
+     * outside the board or occupies a non-empty cell), no change is made.
+     */
     virtual void moveLeft() = 0;
+
+    /**
+     * Moves the current shape one block right if the resulting state of the
+     * shape is valid. If it is not (at least one block of the current shape is
+     * outside the board or occupies a non-empty cell), no change is made.
+     */
     virtual void moveRight() = 0;
 };
 

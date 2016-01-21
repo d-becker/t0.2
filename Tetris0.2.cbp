@@ -53,12 +53,19 @@
 		<Unit filename="Test/CoordsTest.cpp">
 			<Option target="Debug" />
 		</Unit>
+		<Unit filename="Test/DefaultGameBoardTest.cpp">
+			<Option target="Debug" />
+		</Unit>
+		<Unit filename="Test/TestHelpers.h">
+			<Option target="Debug" />
+		</Unit>
 		<Unit filename="include/BasicBlock.h" />
 		<Unit filename="include/BasicBoard.h" />
 		<Unit filename="include/BasicShape.h" />
 		<Unit filename="include/Block.h" />
 		<Unit filename="include/Board.h" />
 		<Unit filename="include/Coords.h" />
+		<Unit filename="include/DefaultGameBoard.h" />
 		<Unit filename="include/GameBoard.h" />
 		<Unit filename="include/Shape.h" />
 		<Unit filename="main.cpp" />
@@ -66,6 +73,7 @@
 		<Unit filename="src/BasicBoard.cpp" />
 		<Unit filename="src/BasicShape.cpp" />
 		<Unit filename="src/Coords.cpp" />
+		<Unit filename="src/DefaultGameBoard.cpp" />
 		<Extensions>
 			<envvars />
 			<code_completion />

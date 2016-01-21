@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "UnitTest++.h"
+#include "TestHelpers.h"
 
 #include "BasicBlock.h"
 #include "BasicShape.h"
@@ -9,24 +10,6 @@
 using namespace std;
 
 namespace {
-
-// Helper functions.
-
-// Checks whether a vector contains an element.
-template <typename T>
-bool contains(const vector<T>& vec, const T& elem) {
-  return std::find(vec.begin(), vec.end(), elem) != vec.end();
-}
-
-// Checks if two vectors contain the same elements.
-template <typename T>
-bool same_elements(const vector<T>& vec1, const vector<T>& vec2) {
-  if (vec1.size() != vec2.size()) {return false;}
-  for (const T& elem : vec1) {
-    if (!contains(vec2, elem)) {return false;}
-  }
-  return true;
-}
 
 // Tests.
 SUITE(getBBoxSize)
