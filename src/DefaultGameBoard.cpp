@@ -41,36 +41,27 @@ void DefaultGameBoard::setCurrentShapePosition(Coords position) {
 }
 
 vector<Coords> DefaultGameBoard::getAbsolutePositions() const {
-  vector<Coords> res;
-  for (const Coords& c : m_current_shape->getBlockPositions()) {
-    res.emplace_back(m_current_shape_pos + c);
-  }
-  return res;
+  return getAbsolutePositions(m_current_shape, m_current_shape_pos);
 }
 
 bool DefaultGameBoard::isAtValidPos() const {
-  vector<Coords> abs_pos = getAbsolutePositions();
-  for (const Coords& c : abs_pos) {
-    if (!m_board->isValid(c)) { return false; }
-    if (m_board->get(c) != nullptr) { return false; }
-  }
-  return true;
+  return isAtValidPos(m_current_shape, m_current_shape_pos);
 }
 
 bool DefaultGameBoard::hasLanded() const {
-  vector<Coords> abs_pos = getAbsolutePositions();
-  for (const Coords& c : abs_pos) {
-    int vertical_under = c.getVertical() + 1;
-    int horizontal = c.getHorizontal();
-    if (vertical_under >= m_board->getHeight()
-     || m_board->get(vertical_under, horizontal) != nullptr) {
-      return true;
-    }
-  }
-  return false;
+  return hasLanded(m_current_shape, m_current_shape_pos);
+}
+
+Coords DefaultGameBoard::whereWouldLand() const {
+  Coords res = m_current_shape_pos;
+  for (; !hasLanded(m_current_shape, res); res += Coords(1, 0))
+  {}
+  return res;
 }
 
 void DefaultGameBoard::lock() {
+  if (m_current_shape == nullptr) { return; }
+
   for (const Coords& c : m_current_shape->getBlockPositions()) {
     shared_ptr<Block> block = m_current_shape->get(c);
     m_board->set(c + m_current_shape_pos, block);
@@ -94,6 +85,8 @@ void DefaultGameBoard::removeFilledRows() {
 }
 
 void DefaultGameBoard::rotateLeft() {
+  if (m_current_shape == nullptr) { return; }
+
   shared_ptr<Shape> orig_current_shape = m_current_shape->clone();
   m_current_shape->rotateLeft();
   if (!isAtValidPos()) {
@@ -102,6 +95,8 @@ void DefaultGameBoard::rotateLeft() {
 }
 
 void DefaultGameBoard::rotateRight() {
+  if (m_current_shape == nullptr) { return; }
+
   shared_ptr<Shape> orig_current_shape = m_current_shape->clone();
   m_current_shape->rotateLeft();
   if (!isAtValidPos()) {
@@ -125,10 +120,48 @@ void DefaultGameBoard::moveRight() {
   move(Coords(0, 1));
 }
 
+// Private methods.
+
+vector<Coords> DefaultGameBoard::getAbsolutePositions(
+                                             shared_ptr<Shape> shape,
+                                             const Coords& coords) const {
+  vector<Coords> res;
+  if (shape != nullptr) {
+    for (const Coords& c : shape->getBlockPositions()) {
+      res.emplace_back(coords + c);
+    }
+  }
+  return res;
+ }
+
+bool DefaultGameBoard::isAtValidPos(shared_ptr<Shape> shape,
+                                    const Coords& coords) const {
+  vector<Coords> abs_pos = getAbsolutePositions(shape, coords);
+  for (const Coords& c : abs_pos) {
+    if (!m_board->isValid(c)) { return false; }
+    if (m_board->get(c) != nullptr) { return false; }
+  }
+  return true;
+}
+
+bool DefaultGameBoard::hasLanded(shared_ptr<Shape> shape,
+                                 const Coords& coords) const {
+  vector<Coords> abs_pos = getAbsolutePositions(shape, coords);
+  for (const Coords& c : abs_pos) {
+    int vertical_under = c.getVertical() + 1;
+    int horizontal = c.getHorizontal();
+    if (vertical_under >= m_board->getHeight()
+     || m_board->get(vertical_under, horizontal) != nullptr) {
+      return true;
+    }
+  }
+  return false;
+}
+
 void DefaultGameBoard::move(const Coords& offset) {
   Coords orig_pos = m_current_shape_pos;
   m_current_shape_pos += offset;
-  if (!isValid()) {
+  if (!isAtValidPos()) {
     m_current_shape_pos = orig_pos;
   }
 }

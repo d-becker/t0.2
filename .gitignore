@@ -2,4 +2,5 @@ bin/
 obj/
 nbproject/
 licence.txt
+licence_script.py
 *~

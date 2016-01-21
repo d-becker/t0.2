@@ -70,6 +70,15 @@ class GameBoard
     virtual bool hasLanded() const = 0;
 
     /**
+     * Checks for the position where the current shape would land if it did not
+     * move sideways.
+     *
+     * \return The position where the current shape would land if it did not
+     *         move sideways.
+     */
+    virtual Coords whereWouldLand() const = 0;
+
+    /**
      * Locks the shape on the board, that is, the blocks of the shape are
      * assigned to the positions on the board where they currently are.
      * The current shape is set to \c nullptr.

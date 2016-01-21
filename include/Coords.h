@@ -18,6 +18,7 @@
 #ifndef COORDS_H
 #define COORDS_H
 
+#include <iostream>
 
 class Coords
 {
@@ -47,5 +48,7 @@ class Coords
 bool operator==(const Coords& lhs, const Coords& rhs);
 Coords operator+(Coords lhs, const Coords& rhs);
 Coords operator-(Coords lhs, const Coords& rhs);
+
+std::ostream& operator<<(std::ostream& os, const Coords& coords);
 
 #endif // COORDS_H
