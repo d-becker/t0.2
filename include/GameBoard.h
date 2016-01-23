@@ -31,13 +31,39 @@ class GameBoard
   public:
     virtual ~GameBoard() {}
 
+    /**
+     * Returns a (smart) pointer to the board.
+     *
+     * \return A (smart) pointer to the board.
+     */
     virtual std::shared_ptr<const Board> getBoard() const = 0;
 
+    /**
+     * Returns a (smart) pointer to the current shape.
+     *
+     * \return A (smart) pointer to the current shape.
+     */
     virtual std::shared_ptr<const Shape> getCurrentShape() const = 0;
+
+    /**
+     * Sets the current shape.
+     *
+     * \param shape The new current shape.
+     */
     virtual void setCurrentShape(std::shared_ptr<Shape> shape) = 0;
 
-
+    /**
+     * Returns the current shape's position.
+     *
+     * \return The current shape's position.
+     */
     virtual Coords getCurrentShapePosition() const = 0;
+
+    /**
+     * Sets the current shape's position.
+     *
+     * \param position The current shape's new position.
+     */
     virtual void setCurrentShapePosition(Coords position) = 0;
 
     /**

@@ -1,6 +1,13 @@
 bin/
 obj/
 nbproject/
+doxygen/
+.objs/
+
 licence.txt
 licence_script.py
+main_release.cpp
+
+*.a
+*.o
 *~
