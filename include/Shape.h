@@ -2,8 +2,8 @@
  * Copyright (C) 2016 Daniel Becker <beckerdaniel.dani@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 3 as published by
- * the Free Software Foundation.
+ * it under the terms of the GNU General Public License version 3 as published
+ * by the Free Software Foundation.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -22,17 +22,16 @@
 #include <vector>
 
 #include "Coords.h"
+#include "Drawable.h"
 
 namespace tetris {
 
 class Block;
 
-class Shape
+class Shape : public Drawable
 {
   public:
     virtual ~Shape() {}
-
-    //virtual Shape& operator=(const Shape& other) = 0;
 
     /**
      * Returns the size of the side of the bounding box of the \c Shape.

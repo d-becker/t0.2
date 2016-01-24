@@ -2,8 +2,8 @@
  * Copyright (C) 2016 Daniel Becker <beckerdaniel.dani@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 3 as published by
- * the Free Software Foundation.
+ * it under the terms of the GNU General Public License version 3 as published
+ * by the Free Software Foundation.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -21,6 +21,7 @@
 #include <memory>
 
 #include "Coords.h"
+#include "Drawable.h"
 
 namespace tetris {
 
@@ -32,7 +33,7 @@ class Block;
  * corner, the first coordinate is for the vertical, the second coordinate is
  * for the horizontal direction.
  */
-class Board
+class Board : public Drawable
 {
   public:
     virtual ~Board() {}
