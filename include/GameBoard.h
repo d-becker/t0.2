@@ -23,6 +23,8 @@
 
 #include "Coords.h"
 
+namespace tetris {
+
 class Board;
 class Shape;
 
@@ -159,5 +161,7 @@ class GameBoard
      */
     virtual void moveRight() = 0;
 };
+
+} // namespace tetris.
 
 #endif // GAMEBOARD_H

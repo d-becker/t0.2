@@ -8,6 +8,7 @@
 #include "BasicShape.h"
 
 using namespace std;
+using namespace tetris;
 
 namespace {
 

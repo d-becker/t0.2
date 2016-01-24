@@ -18,6 +18,8 @@
 
 using namespace std;
 
+namespace tetris {
+
 BasicBoard::BasicBoard(int height, int width)
   : m_height(height), m_width(width),
     m_table(height, vector<shared_ptr<Block>>(width, nullptr)) {
@@ -80,3 +82,4 @@ const {
   return m_table.at(vertical_index).at(horizontal_index);
 }
 
+} // namespace tetris.

@@ -22,6 +22,7 @@
 #include "Block.h"
 #include "GameBoard.h"
 #include "Shape.h"
+#include "Drawable.h"
 
 using namespace std;
 

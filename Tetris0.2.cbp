@@ -112,6 +112,7 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
+		<Unit filename="include/Drawable.h" />
 		<Unit filename="include/GameBoard.h">
 			<Option target="Debug" />
 			<Option target="Release" />

@@ -20,6 +20,8 @@
 
 #include <iostream>
 
+namespace tetris {
+
 class Coords
 {
   public:
@@ -50,5 +52,7 @@ Coords operator+(Coords lhs, const Coords& rhs);
 Coords operator-(Coords lhs, const Coords& rhs);
 
 std::ostream& operator<<(std::ostream& os, const Coords& coords);
+
+} // namespace tetris.
 
 #endif // COORDS_H

@@ -20,6 +20,8 @@
 
 #include "Block.h"
 
+namespace tetris {
+
 /**
  * Basic (essentially empty) class implementing the \c Block interface.
  */
@@ -34,5 +36,7 @@ class BasicBlock : public Block
   protected:
   private:
 };
+
+} // namespace tetris.
 
 #endif // BASICBLOCK_H

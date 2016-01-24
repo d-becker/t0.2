@@ -22,6 +22,8 @@
 
 #include "Coords.h"
 
+namespace tetris {
+
 class Block;
 
 /**
@@ -129,5 +131,7 @@ class Board
      */
     virtual void removeRow(int row) = 0;
 };
+
+} // namespace tetris.
 
 #endif // BOARD_H

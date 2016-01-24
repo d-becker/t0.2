@@ -20,6 +20,8 @@
 
 #include <memory>
 
+namespace tetris {
+
 /**
  * A common interface for blocks that constitute <tt>Shape</tt>s.
  */
@@ -36,5 +38,7 @@ class Block
      */
     virtual std::shared_ptr<Block> clone() const = 0;
 };
+
+} // namespace tetris.
 
 #endif // BLOCK_H

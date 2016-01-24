@@ -21,6 +21,7 @@
 
 #include "Board.h"
 
+namespace tetris {
 
 class BasicBoard : public Board
 {
@@ -55,5 +56,7 @@ class BasicBoard : public Board
     // the table.
     std::vector<std::vector<std::shared_ptr<Block>>> m_table;
 };
+
+} // namespace tetris.
 
 #endif // BASICBOARD_H

@@ -19,6 +19,8 @@
 
 using namespace std;
 
+namespace tetris {
+
 Coords::Coords(int vertical, int horizontal)
   : m_vertical(vertical), m_horizontal(horizontal)
 {
@@ -95,3 +97,5 @@ ostream& operator<<(ostream& os, const Coords& coords) {
      << coords.getHorizontal() << ")";
   return os;
 }
+
+} // namespace tetris.

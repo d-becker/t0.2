@@ -24,6 +24,8 @@
 
 using namespace std;
 
+namespace tetris {
+
 // PIMPL
 class BasicShape::PIMPL
 {
@@ -167,3 +169,5 @@ void BasicShape::rotateLeft() {
 shared_ptr<Shape> BasicShape::clone() const {
   return make_shared<BasicShape>(*this);
 }
+
+} // namespace tetris.

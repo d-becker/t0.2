@@ -23,6 +23,8 @@
 
 #include "Coords.h"
 
+namespace tetris {
+
 class Block;
 
 class Shape
@@ -110,5 +112,7 @@ class Shape
      */
     virtual std::shared_ptr<Shape> clone() const = 0;
 };
+
+} // namespace tetris.
 
 #endif // SHAPE_H

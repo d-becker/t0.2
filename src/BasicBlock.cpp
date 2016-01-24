@@ -19,6 +19,8 @@
 
 using namespace std;
 
+namespace tetris {
+
 BasicBlock::~BasicBlock()
 {
   //dtor
@@ -27,3 +29,5 @@ BasicBlock::~BasicBlock()
 shared_ptr<Block> BasicBlock::clone() const {
   return make_shared<BasicBlock>(*this);
 }
+
+} // namespace tetris.

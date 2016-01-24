@@ -19,6 +19,8 @@
 
 #include "GameBoard.h"
 
+namespace tetris {
+
 class Board;
 class Shape;
 
@@ -66,5 +68,7 @@ class DefaultGameBoard : public GameBoard
     std::shared_ptr<Shape> m_current_shape;
     Coords m_current_shape_pos = Coords(0, 0);
 };
+
+} // namespace tetris.
 
 #endif // DEFAULTGAMEBOARD_H

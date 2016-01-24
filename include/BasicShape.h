@@ -20,6 +20,7 @@
 
 #include "Shape.h"
 
+namespace tetris {
 
 class BasicShape : public Shape
 {
@@ -49,5 +50,7 @@ private:
   PIMPL* m_pimpl;
 
 };
+
+} // namespace tetris.
 
 #endif // BASICSHAPE_H

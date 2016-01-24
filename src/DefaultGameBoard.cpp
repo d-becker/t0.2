@@ -23,6 +23,8 @@
 
 using namespace std;
 
+namespace tetris {
+
 DefaultGameBoard::DefaultGameBoard(shared_ptr<Board> board)
   : m_board(board)
 {
@@ -181,3 +183,5 @@ void DefaultGameBoard::move(const Coords& offset) {
     m_current_shape_pos = orig_pos;
   }
 }
+
+} // namespace tetris.
