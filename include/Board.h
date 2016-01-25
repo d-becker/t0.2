@@ -89,8 +89,8 @@ class Board : public Drawable
      *
      * \param vertical The vertical position of the block to set.
      * \param horizontal The horizontal position of the block to set.
-     * \param A pointer to the \c Block that will be the new value of the \c
-     *        Block pointer at the given position.
+     * \param block A pointer to the \c Block that will be the new value of
+     *        the \c Block pointer at the given position.
      */
     virtual void set(int vertical, int horizontal,
                      std::shared_ptr<Block> block) = 0;

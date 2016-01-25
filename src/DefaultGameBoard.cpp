@@ -116,7 +116,7 @@ void DefaultGameBoard::rotateRight() {
   if (m_current_shape == nullptr) { return; }
 
   shared_ptr<Shape> orig_current_shape = m_current_shape->clone();
-  m_current_shape->rotateLeft();
+  m_current_shape->rotateRight();
   if (!isAtValidPos()) {
     m_current_shape = orig_current_shape;
   }
@@ -141,7 +141,7 @@ void DefaultGameBoard::moveRight() {
 // Private methods.
 
 vector<Coords> DefaultGameBoard::getAbsolutePositions(
-                                             shared_ptr<Shape> shape,
+                                             shared_ptr<const Shape> shape,
                                              const Coords& coords) const {
   vector<Coords> res;
   if (shape != nullptr) {

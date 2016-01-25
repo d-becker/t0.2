@@ -32,7 +32,7 @@ class DrawingContextInfo;
  * \c DrawingContextInfo, which is the parameter of the draw method. The struct
  * is not defined in this library, it must be defined by the user who knows
  * what GUI framework they want to use. It should contain all the information
- * are necessary for drawing.
+ * that is necessary for drawing.
  */
 class Drawable {
 public:
@@ -46,7 +46,8 @@ public:
    * \param dci The struct containing all necessary information about the
    *        drawing context.
    */
-  virtual void draw(DrawingContextInfo& dci __attribute__((unused))) {
+  virtual void draw(DrawingContextInfo& dci
+            /** \cond attribute */ __attribute__((unused)) /** \endcond */ ) {
 
   }
 };

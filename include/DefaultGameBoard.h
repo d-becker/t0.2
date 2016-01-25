@@ -57,8 +57,8 @@ class DefaultGameBoard : public GameBoard
     virtual void moveDown() override;
     virtual void moveLeft() override;
     virtual void moveRight() override;
-  private:
-    std::vector<Coords> getAbsolutePositions(std::shared_ptr<Shape> shape,
+  protected:
+    std::vector<Coords> getAbsolutePositions(std::shared_ptr<const Shape> shape,
                                              const Coords& coords) const;
     bool isAtValidPos(std::shared_ptr<Shape> shape, const Coords& coords) const;
     bool hasLanded(std::shared_ptr<Shape> shape, const Coords& coords) const;

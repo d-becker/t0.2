@@ -1,0 +1,77 @@
+#include "DefaultGame.h"
+
+#include <cstdlib>
+#include <ctime>
+#include <stdexcept>
+
+namespace tetris {
+
+DefaultGame::DefaultGame(std::shared_ptr<GameBoard> gameBoard,
+                         std::vector<std::shared_ptr<Shape>> shapes)
+  : m_game_board(gameBoard), m_shapes(shapes)
+{
+  if (m_game_board == nullptr) {
+    throw std::invalid_argument("A null game board is not allowed.");
+  }
+
+  if (m_shapes.empty()) {
+    throw std::invalid_argument("At least one shape must be specified.");
+  }
+
+  for (std::shared_ptr<Shape>& ptr : m_shapes) {
+    if (ptr == nullptr) {
+      throw std::invalid_argument("A null shape is not allowed.");
+    }
+  }
+
+  // Setting the random seed.
+  srand(time(nullptr));
+  newShape();
+}
+
+DefaultGame::~DefaultGame()
+{
+  //dtor
+}
+
+void DefaultGame::advance() {
+  if (m_game_board->hasLanded()) {
+    m_game_board->lock();
+    m_game_board->removeFilledRows();
+    m_game_board->setCurrentShapePosition(Coords(0, 0)); // It would be better in the middle.
+
+    // Choosing a new shape.
+    newShape();
+
+  } else {
+    m_game_board->moveDown();
+  }
+}
+
+void DefaultGame::rotateLeft() {
+  m_game_board->rotateLeft();
+}
+
+void DefaultGame::rotateRight() {
+  m_game_board->rotateRight();
+}
+
+void DefaultGame::moveLeft() {
+  m_game_board->moveLeft();
+}
+
+void DefaultGame::moveRight() {
+  m_game_board->moveRight();
+}
+
+void DefaultGame::newShape() {
+  unsigned int index = rand() % m_shapes.size();
+  m_game_board->setCurrentShape(m_shapes.at(index)->clone());
+
+  // Random rotations.
+  int  rotate_times = rand() % 4;
+  for (int i = 0; i < rotate_times; ++i) { m_game_board->rotateRight(); }
+
+}
+
+} // namespace tetris.
