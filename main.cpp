@@ -60,6 +60,8 @@ int main()
   shared_ptr<Game> game = make_shared<DefaultGame>(gbc, shapes);
 
   //
+  game->newGame();
+
   while (true) {
     system("clear");
     cout << gbc->toString() << ".\n" << "Command: ";
@@ -79,8 +81,17 @@ int main()
       game->rotateLeft();
     } else if (input == "rr") {
       game->rotateRight();
+    } else if (input == "newgame") {
+      game->newGame();
     } else {
+    }
+
+    if (game->isGameOver()) {
+      cout << "Game over.\n";
+      cin >> input; // Waiting for enter.
+      game->newGame();
     }
   }
 
+  return 0;
 }

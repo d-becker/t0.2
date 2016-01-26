@@ -46,7 +46,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Lib-Release">
-				<Option output="lib/static/Release/Tetrisa" prefix_auto="1" extension_auto="1" />
+				<Option output="lib/static/Release/Tetris" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="" />
 				<Option object_output="lib/static/Release/.objs" />
 				<Option type="2" />
@@ -91,6 +91,10 @@
 				</Compiler>
 			</Target>
 		</Build>
+		<VirtualTargets>
+			<Add alias="BuildAll" targets="Debug;Release;Lib-Debug;Lib-Release;LibDyn-Debug;LibDyn-Release;" />
+			<Add alias="BuildLibs" targets="Lib-Debug;Lib-Release;LibDyn-Debug;LibDyn-Release;" />
+		</VirtualTargets>
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />

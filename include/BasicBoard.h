@@ -40,6 +40,7 @@ class BasicBoard : public Board
                      std::shared_ptr<Block> block) override;
 
     virtual void removeRow(int row) override;
+    virtual void clear() override;
   private:
     // This method is declared const so it can be used by the const version of
     // get, but returns a mutable smart pointer so that it can be returned

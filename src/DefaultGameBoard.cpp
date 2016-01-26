@@ -87,7 +87,8 @@ void DefaultGameBoard::lock() {
   m_current_shape = nullptr;
 }
 
-void DefaultGameBoard::removeFilledRows() {
+int DefaultGameBoard::removeFilledRows() {
+  int res = 0;
   for (int i = 0; i < m_board->getHeight(); ++i) {
     bool contains_empty = false;
     for (int j = 0; j < m_board->getWidth(); ++j) {
@@ -98,8 +99,10 @@ void DefaultGameBoard::removeFilledRows() {
     }
     if (!contains_empty) {
       m_board->removeRow(i);
+      res++;
     }
   }
+  return res;
 }
 
 void DefaultGameBoard::rotateLeft() {
@@ -136,6 +139,11 @@ void DefaultGameBoard::moveLeft() {
 
 void DefaultGameBoard::moveRight() {
   move(Coords(0, 1));
+}
+
+void DefaultGameBoard::clear() {
+  m_board->clear();
+  m_current_shape = nullptr;
 }
 
 // Private methods.

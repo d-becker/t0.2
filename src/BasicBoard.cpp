@@ -70,6 +70,14 @@ void BasicBoard::removeRow(int row) {
   m_table.emplace_back(getWidth(), nullptr);
 }
 
+void BasicBoard::clear() {
+  for (std::vector<std::shared_ptr<Block>>& row : m_table) {
+    for (std::shared_ptr<Block>& block : row) {
+      block = nullptr;
+    }
+  }
+}
+
 // Helpers.
 shared_ptr<Block> BasicBoard::m_const_neutral_get(int vertical, int horizontal)
 const {

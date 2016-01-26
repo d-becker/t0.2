@@ -16,11 +16,25 @@ class Game : public Drawable
     virtual ~Game() {}
 
     /**
+     * Checks whether the game is over.
+     *
+     * \return \c true if the game is over; \c false otherwise.
+     */
+    virtual bool isGameOver() const = 0;
+
+    /**
+     * Starts a new game.
+     */
+    virtual void newGame() = 0;
+
+    /**
      * Advances the game, that is, the current shape moves down one line, and
      * the game board is checked for landing and completely filled lines, and
      * creates a new current shape if the previous was locked.
+     *
+     * \return The number of rows that have been removed.
      */
-    virtual void advance() = 0;
+    virtual int advance() = 0;
 
     /**
      * Rotates the current shape left if it is possible.

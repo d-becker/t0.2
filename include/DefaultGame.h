@@ -17,7 +17,9 @@ class DefaultGame : public Game
                 std::vector<std::shared_ptr<Shape>> shapes);
     virtual ~DefaultGame();
 
-    virtual void advance() override;
+    virtual bool isGameOver() const override;
+    virtual void newGame() override;
+    virtual int advance() override;
     virtual void rotateLeft() override;
     virtual void rotateRight() override;
     virtual void moveLeft() override;
@@ -28,6 +30,7 @@ class DefaultGame : public Game
 
     std::shared_ptr<GameBoard> m_game_board;
     std::vector<std::shared_ptr<Shape>> m_shapes;
+    bool m_game_over;
 };
 
 } // namespace tetris.

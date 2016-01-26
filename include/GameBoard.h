@@ -117,8 +117,10 @@ class GameBoard : public Drawable
     /**
      * Removes the rows that are completely filled from the board and adds
      * empty rows at the top of the board.
+     *
+     * \return The number of rows that have been removed.
      */
-    virtual void removeFilledRows() = 0;
+    virtual int removeFilledRows() = 0;
 
     /**
      * Rotates the current shape left if the resulting state of the shape is
@@ -161,6 +163,12 @@ class GameBoard : public Drawable
      * outside the board or occupies a non-empty cell), no change is made.
      */
     virtual void moveRight() = 0;
+
+    /**
+     * Clears the board and sets the current shape to \c nullptr. The current
+     * shape's position is not reset.
+     */
+    virtual void clear() = 0;
 };
 
 } // namespace tetris.

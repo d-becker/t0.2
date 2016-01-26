@@ -47,7 +47,7 @@ class DefaultGameBoard : public GameBoard
     virtual Coords whereWouldLand() const override;
 
     virtual void lock() override;
-    virtual void removeFilledRows() override;
+    virtual int removeFilledRows() override;
 
 
     virtual void rotateLeft() override;
@@ -57,6 +57,8 @@ class DefaultGameBoard : public GameBoard
     virtual void moveDown() override;
     virtual void moveLeft() override;
     virtual void moveRight() override;
+
+    virtual void clear() override;
   protected:
     std::vector<Coords> getAbsolutePositions(std::shared_ptr<const Shape> shape,
                                              const Coords& coords) const;

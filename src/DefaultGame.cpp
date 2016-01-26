@@ -8,7 +8,7 @@ namespace tetris {
 
 DefaultGame::DefaultGame(std::shared_ptr<GameBoard> gameBoard,
                          std::vector<std::shared_ptr<Shape>> shapes)
-  : m_game_board(gameBoard), m_shapes(shapes)
+  : m_game_board(gameBoard), m_shapes(shapes), m_game_over(false)
 {
   if (m_game_board == nullptr) {
     throw std::invalid_argument("A null game board is not allowed.");
@@ -26,7 +26,6 @@ DefaultGame::DefaultGame(std::shared_ptr<GameBoard> gameBoard,
 
   // Setting the random seed.
   srand(time(nullptr));
-  newShape();
 }
 
 DefaultGame::~DefaultGame()
@@ -34,18 +33,35 @@ DefaultGame::~DefaultGame()
   //dtor
 }
 
-void DefaultGame::advance() {
+bool DefaultGame::isGameOver() const {
+  return m_game_over;
+}
+
+void DefaultGame::newGame() {
+  m_game_board->clear();
+  m_game_over = false;
+
+  newShape();
+}
+
+int DefaultGame::advance() {
+  int res = 0;
   if (m_game_board->hasLanded()) {
     m_game_board->lock();
-    m_game_board->removeFilledRows();
-    m_game_board->setCurrentShapePosition(Coords(0, 0)); // It would be better in the middle.
+    res = m_game_board->removeFilledRows();
 
     // Choosing a new shape.
     newShape();
 
+    // Checking for game over.
+    if (!m_game_board->isAtValidPos()) {
+      m_game_over = true;
+    }
+
   } else {
     m_game_board->moveDown();
   }
+  return res;
 }
 
 void DefaultGame::rotateLeft() {
@@ -65,6 +81,8 @@ void DefaultGame::moveRight() {
 }
 
 void DefaultGame::newShape() {
+  m_game_board->setCurrentShapePosition(Coords(0, 0)); // It would be better in the middle.
+
   unsigned int index = rand() % m_shapes.size();
   m_game_board->setCurrentShape(m_shapes.at(index)->clone());
 

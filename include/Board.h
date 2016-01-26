@@ -131,6 +131,11 @@ class Board : public Drawable
      * \param row The vertical coordinate of the row to be removed.
      */
     virtual void removeRow(int row) = 0;
+
+    /**
+     * Clears the board, that is, removes all filled blocks.
+     */
+    virtual void clear() = 0;
 };
 
 } // namespace tetris.
