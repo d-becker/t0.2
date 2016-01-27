@@ -30,6 +30,8 @@
 #include "Game.h"
 
 #include "GameBoardConsole.h"
+#include "TetrominoO.h"
+#include "TetrominoT.h"
 
 using namespace std;
 using namespace tetris;
@@ -51,7 +53,8 @@ int main()
 
 
   shared_ptr<Shape> shape = make_shared<BasicShape>(bbox_size, coords, blocks);
-  vector<shared_ptr<Shape>> shapes(1, shape);
+  vector<shared_ptr<Shape>> shapes{make_shared<TetrominoO>(block->clone()),
+                                   make_shared<TetrominoT>(block->clone())};
 
   shared_ptr<Board> board = make_shared<BasicBoard>(20, 15);
 
