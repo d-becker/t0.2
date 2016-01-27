@@ -18,7 +18,7 @@
 1452794314 /home/danielbecker/Documents/Programming/C++/Tetris0.2/include/Block.h
 	<memory>
 
-1453757862 source:/home/danielbecker/Programming/C++/Projects/Tetris0.2/main.cpp
+1453854815 source:/home/danielbecker/Programming/C++/Projects/Tetris0.2/main.cpp
 	<iostream>
 	<cstdlib>
 	"UnitTest++.h"
@@ -31,6 +31,8 @@
 	"Drawable.h"
 	"Game.h"
 	"GameBoardConsole.h"
+	"TetrominoO.h"
+	"TetrominoT.h"
 
 1453679592 /home/danielbecker/Programming/C++/Projects/Tetris0.2/include/Block.h
 	<memory>
@@ -248,14 +250,14 @@
 	<ctime>
 	<stdexcept>
 
-1453756632 /home/danielbecker/Programming/C++/Projects/Tetris0.2/include/DefaultGame.h
+1453854701 /home/danielbecker/Programming/C++/Projects/Tetris0.2/include/DefaultGame.h
 	<memory>
 	<vector>
 	"Game.h"
 	"GameBoard.h"
 	"Shape.h"
 
-1453756583 /home/danielbecker/Programming/C++/Projects/Tetris0.2/include/Game.h
+1453854687 /home/danielbecker/Programming/C++/Projects/Tetris0.2/include/Game.h
 	"Drawable.h"
 
 1453753986 /home/danielbecker/Programming/C++/Projects/Tetris0.2/include/GameBoardConsole.h

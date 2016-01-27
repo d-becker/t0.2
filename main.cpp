@@ -76,6 +76,8 @@ int main()
       break;
     } else if (input == "a") {
       game->advance();
+    } else if (input == "drop") {
+      game->drop();
     } else if (input == "l") {
       game->moveLeft();
     } else if (input == "r") {

@@ -37,6 +37,13 @@ class Game : public Drawable
     virtual int advance() = 0;
 
     /**
+     * Advances the game to the point where the current shape lands.
+     *
+     * \return The number of rows that have been removed (if any).
+     */
+    virtual int drop() = 0;
+
+    /**
      * Rotates the current shape left if it is possible.
      */
     virtual void rotateLeft() = 0;

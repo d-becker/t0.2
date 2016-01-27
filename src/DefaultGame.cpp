@@ -64,6 +64,13 @@ int DefaultGame::advance() {
   return res;
 }
 
+int DefaultGame::drop() {
+  while(!(m_game_board->hasLanded())) {
+    advance();
+  }
+  return advance();
+}
+
 void DefaultGame::rotateLeft() {
   m_game_board->rotateLeft();
 }

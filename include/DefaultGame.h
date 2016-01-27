@@ -20,6 +20,7 @@ class DefaultGame : public Game
     virtual bool isGameOver() const override;
     virtual void newGame() override;
     virtual int advance() override;
+    virtual int drop() override;
     virtual void rotateLeft() override;
     virtual void rotateRight() override;
     virtual void moveLeft() override;
