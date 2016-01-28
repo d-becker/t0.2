@@ -49,7 +49,7 @@ class Shape : public Drawable
      *
      * \return \c true if the given position is valid; \c false otherwise.
      */
-    virtual bool isValid(int vertical, int horizontal) const =0;
+    virtual bool isValid(int vertical, int horizontal) const = 0;
 
     /**
      * The same as calling

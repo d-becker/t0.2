@@ -161,6 +161,11 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
+		<Unit filename="include/GameBoardConsole.h">
+			<Option target="Debug" />
+			<Option target="Lib-Debug" />
+			<Option target="LibDyn-Debug" />
+		</Unit>
 		<Unit filename="include/Shape.h">
 			<Option target="Debug" />
 			<Option target="Release" />

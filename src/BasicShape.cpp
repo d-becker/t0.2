@@ -48,6 +48,10 @@ public:
     checkDuplicates(blocks);
 
     for (unsigned int i = 0; i < coords.size(); ++i) {
+      Coords& coord = coords.at(i);
+      if (!isValid(coord.getVertical(), coord.getHorizontal())) {
+        throw invalid_argument("A block is outside the bounding box.");
+      }
       m_blocks.emplace_back(coords.at(i), blocks.at(i)/*->clone()*/);
     }
   }
@@ -73,6 +77,11 @@ public:
 
   int m_bbox_size;
   std::vector<BlockWithPos> m_blocks {};
+
+  bool isValid(int vertical, int horizontal) const {
+    return vertical >= 0 && horizontal >= 0
+        && vertical < m_bbox_size && horizontal < m_bbox_size;
+  }
 
   template <typename T>
   void checkDuplicates(std::vector<T> vec) {
@@ -116,8 +125,7 @@ int BasicShape::getBBoxSize() const {
 }
 
 bool BasicShape::isValid(int vertical, int horizontal) const {
-  return vertical >= 0 && horizontal >= 0
-      && vertical < getBBoxSize() && horizontal < getBBoxSize();
+  return m_pimpl->isValid(vertical, horizontal);
 }
 
 shared_ptr<Block> BasicShape::get(int vertical, int horizontal) const {
