@@ -33,6 +33,8 @@ class DefaultGame : public Game
                 std::vector<std::shared_ptr<Shape>> shapes);
     virtual ~DefaultGame();
 
+    virtual std::shared_ptr<const GameBoard> getGameBoard() const override;
+
     virtual bool isGameOver() const override;
     virtual void newGame() override;
     virtual int advance() override;

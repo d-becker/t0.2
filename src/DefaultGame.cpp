@@ -49,6 +49,10 @@ DefaultGame::~DefaultGame()
   //dtor
 }
 
+std::shared_ptr<const GameBoard> DefaultGame::getGameBoard() const {
+  return m_game_board;
+}
+
 bool DefaultGame::isGameOver() const {
   return m_game_over;
 }

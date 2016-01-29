@@ -18,6 +18,7 @@
 #define GAME_H
 
 #include "Drawable.h"
+#include "GameBoard.h"
 
 namespace tetris {
 
@@ -30,6 +31,13 @@ class Game : public Drawable
 {
   public:
     virtual ~Game() {}
+
+    /**
+     * Returns the game board that is associated with this game.
+     *
+     * \return The game board that is associated with this game.
+     */
+    virtual std::shared_ptr<const GameBoard> getGameBoard() const = 0;
 
     /**
      * Checks whether the game is over.
