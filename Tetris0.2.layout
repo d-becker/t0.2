@@ -1,79 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="Debug" />
-	<File name="include/Coords.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1077" topLine="31" />
-		</Cursor>
-	</File>
-	<File name="include/BasicBoard.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1935" topLine="40" />
-		</Cursor>
-	</File>
-	<File name="include/GameBoard.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2743" topLine="71" />
-		</Cursor>
-	</File>
-	<File name="include/Drawable.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="145" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src/BasicBoard.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2134" topLine="56" />
-		</Cursor>
-	</File>
-	<File name="include/Shape.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1491" topLine="21" />
-		</Cursor>
-	</File>
-	<File name="include/Game.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2090" topLine="62" />
-		</Cursor>
-	</File>
-	<File name="main_release.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="400" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="Test/CoordsTest.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2747" topLine="104" />
-		</Cursor>
-	</File>
-	<File name="src/BasicShape.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3312" topLine="118" />
-		</Cursor>
-	</File>
-	<File name="include/DefaultGameBoard.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1902" topLine="44" />
-		</Cursor>
-	</File>
-	<File name="include/DefaultGame.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="501" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src/TetrominoT.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="525" topLine="12" />
-		</Cursor>
-	</File>
+	<ActiveTarget name="BuildLibs" />
 	<File name="main.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="923" topLine="20" />
-		</Cursor>
-	</File>
-	<File name="Test/TestHelpers.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="83" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="Test/DefaultGameBoardTest.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -81,39 +11,9 @@
 			<Cursor1 position="7080" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="include/Board.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/TetrominoT.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4347" topLine="115" />
-		</Cursor>
-	</File>
-	<File name="src/Coords.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="700" topLine="3" />
-		</Cursor>
-	</File>
-	<File name="src/TetrominoO.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="877" topLine="12" />
-		</Cursor>
-	</File>
-	<File name="include/TetrominoO.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="884" topLine="15" />
-		</Cursor>
-	</File>
-	<File name="include/TetrominoT.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="833" topLine="12" />
-		</Cursor>
-	</File>
-	<File name="Test/BasicBoardTest.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3110" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="src/DefaultGame.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="718" topLine="18" />
+			<Cursor1 position="525" topLine="12" />
 		</Cursor>
 	</File>
 	<File name="src/BasicBlock.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -121,9 +21,54 @@
 			<Cursor1 position="540" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Test/BasicShapeTest.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/TetrominoO.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="90" topLine="0" />
+			<Cursor1 position="877" topLine="12" />
+		</Cursor>
+	</File>
+	<File name="src/DefaultGameBoard.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3531" topLine="131" />
+		</Cursor>
+	</File>
+	<File name="include/TetrominoO.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="884" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="src/BasicShape.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3312" topLine="118" />
+		</Cursor>
+	</File>
+	<File name="include/BasicBoard.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1935" topLine="40" />
+		</Cursor>
+	</File>
+	<File name="include/Board.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4347" topLine="115" />
+		</Cursor>
+	</File>
+	<File name="src/BasicBoard.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2134" topLine="56" />
+		</Cursor>
+	</File>
+	<File name="main_release.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="400" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Test/BasicBoardTest.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3110" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="include/DefaultGameBoard.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1902" topLine="44" />
 		</Cursor>
 	</File>
 	<File name="include/BasicBlock.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -131,14 +76,69 @@
 			<Cursor1 position="1011" topLine="15" />
 		</Cursor>
 	</File>
+	<File name="include/Shape.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1491" topLine="21" />
+		</Cursor>
+	</File>
+	<File name="Test/BasicShapeTest.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="90" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/Coords.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="700" topLine="3" />
+		</Cursor>
+	</File>
+	<File name="include/DefaultGame.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1009" topLine="19" />
+		</Cursor>
+	</File>
+	<File name="include/Game.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1097" topLine="18" />
+		</Cursor>
+	</File>
+	<File name="include/TetrominoT.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="833" topLine="12" />
+		</Cursor>
+	</File>
 	<File name="include/BasicShape.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="997" topLine="33" />
 		</Cursor>
 	</File>
-	<File name="src/DefaultGameBoard.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="src/DefaultGame.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3531" topLine="131" />
+			<Cursor1 position="1290" topLine="30" />
+		</Cursor>
+	</File>
+	<File name="Test/CoordsTest.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2747" topLine="104" />
+		</Cursor>
+	</File>
+	<File name="include/Drawable.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="145" topLine="6" />
+		</Cursor>
+	</File>
+	<File name="include/GameBoard.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="833" topLine="20" />
+		</Cursor>
+	</File>
+	<File name="include/Coords.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1077" topLine="31" />
+		</Cursor>
+	</File>
+	<File name="Test/TestHelpers.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="83" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
