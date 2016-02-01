@@ -61,7 +61,7 @@
 				</Linker>
 			</Target>
 			<Target title="LibDyn-Debug">
-				<Option output="lib/dynamic/Tetris_d" imp_lib="lib/dynamic/$(TARGET_OUTPUT_BASENAME)" def_file="lib/dynamic/$(TARGET_OUTPUT_BASENAME).def" prefix_auto="1" extension_auto="1" />
+				<Option output="lib/dynamic/Debug/Tetris_d" imp_lib="lib/dynamic/$(TARGET_OUTPUT_BASENAME)" def_file="lib/dynamic/$(TARGET_OUTPUT_BASENAME).def" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="lib/dynamic/Debug/" />
 				<Option object_output="lib/dynamic/Debug/.objs" />
 				<Option type="3" />
@@ -149,10 +149,7 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="include/Drawable.h">
-			<Option target="Debug" />
-			<Option target="Release" />
-		</Unit>
+		<Unit filename="include/Drawing.h" />
 		<Unit filename="include/Game.h">
 			<Option target="Debug" />
 			<Option target="Release" />
@@ -164,14 +161,23 @@
 		<Unit filename="include/GameBoardConsole.h">
 			<Option target="Debug" />
 			<Option target="Lib-Debug" />
-			<Option target="LibDyn-Debug" />
 		</Unit>
 		<Unit filename="include/Shape.h">
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="include/TetrominoO.h" />
-		<Unit filename="include/TetrominoT.h" />
+		<Unit filename="include/TetrominoO.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="Lib-Debug" />
+			<Option target="Lib-Release" />
+		</Unit>
+		<Unit filename="include/TetrominoT.h">
+			<Option target="Debug" />
+			<Option target="Release" />
+			<Option target="Lib-Debug" />
+			<Option target="Lib-Release" />
+		</Unit>
 		<Unit filename="main.cpp">
 			<Option target="Debug" />
 		</Unit>
