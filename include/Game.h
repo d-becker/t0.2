@@ -17,7 +17,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "Drawable.h"
+#include "Drawing.h"
 #include "GameBoard.h"
 
 namespace tetris {
