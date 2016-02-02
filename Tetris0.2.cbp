@@ -190,6 +190,7 @@
 		<Unit filename="src/Coords.cpp" />
 		<Unit filename="src/DefaultGame.cpp" />
 		<Unit filename="src/DefaultGameBoard.cpp" />
+		<Unit filename="src/Drawing.cpp" />
 		<Unit filename="src/TetrominoO.cpp" />
 		<Unit filename="src/TetrominoT.cpp" />
 		<Extensions>

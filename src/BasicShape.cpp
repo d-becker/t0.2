@@ -105,10 +105,11 @@ BasicShape::BasicShape(int bbox_size, vector<Coords> coords,
 }
 
 BasicShape::BasicShape(const BasicShape& other)
- : m_pimpl(new PIMPL(*other.m_pimpl)) {}
+ : Shape(other),
+   m_pimpl(new PIMPL(*other.m_pimpl)) {}
 
 BasicShape::BasicShape(BasicShape&& other)
- : m_pimpl(other.m_pimpl)
+ : Shape(other), m_pimpl(other.m_pimpl)
 {
   other.m_pimpl = nullptr;
 }

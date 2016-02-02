@@ -17,6 +17,8 @@
 #ifndef DRAWING_H_INCLUDED
 #define DRAWING_H_INCLUDED
 
+#include <memory>
+
 namespace tetris {
 
 /**
@@ -25,25 +27,50 @@ namespace tetris {
  */
 class DrawingContextInfo;
 
+class Drawable; // Forward declaration to let DrawingTool use it.
+
 /**
  * An interface that provides a method, \a draw, which contains the drawing
  * logic for a tetris object. More information can be found in the description
  * of the \c Drawable class.
  */
-struct DrawingTool {
+class DrawingTool {
+  friend class Drawable;
+public:
   virtual ~DrawingTool() {}
+
+//  /**
+//   * Returns the tetris object that this \c DrawingTool is associated with.
+//   *
+//   * \return The tetris object that this \c DrawingTool is associated with.
+//   */
+//  virtual const Drawable& getParent() const = 0;
 
   /**
    * Draws the object it is associated with using the information and data
    * provided by \a dci.
    *
-   * Note: The default implementation does nothing, it should be overridden
-   * by subclasses.
-   *
    * \param dci The struct containing all necessary information about the
    *        drawing context.
    */
   virtual void draw(DrawingContextInfo& dci) = 0;
+
+protected:
+  /**
+   * Returns a deep copy of this \c DrawingTool whose parent will be \a parent.
+   * The argument <em>parent</em>'s type must be the same or a subclass of
+   * the type of the parent of this \c DrawingTool object;
+   * otherwise the behaviour is undefined. It is the user's responsibility
+   * to ensure that this condition is met.
+   *
+   * All subclasses of \c DrawingTool should override this method to allow
+   * correct polymorphic copying.
+   *
+   * \param parent The parent of the new \c DrawingTool.
+   *
+   * \return A deep copy of this \c DrawingTool whose parent will be \a parent.
+   */
+  virtual std::shared_ptr<DrawingTool> copy(const Drawable& parent) const = 0;
 };
 
 /**
@@ -73,15 +100,18 @@ struct DrawingTool {
  */
 class Drawable {
 public:
+  Drawable();
+  virtual ~Drawable() = 0;
+
+  Drawable(const Drawable& other);
+  Drawable(Drawable&& other);
 
   /**
    * Returns a (smart) pointer to the \c DrawingTool object of this \c Drawable.
    *
    * \return A (smart) pointer to the \c DrawingTool object of this \c Drawable.
    */
-  std::shared_ptr<DrawingTool> getDrawingTool() {
-    return m_dt;
-  }
+  std::shared_ptr<DrawingTool> getDrawingTool();
 
   /**
    * Sets the \c DrawingTool object of this \c Drawable to the one pointed to
@@ -90,9 +120,7 @@ public:
    * \param dt A (smart) pointer to the \c DrawingTool object that will be
    *        set as the \c DrawingTool object of this \c Drawable.
    */
-  void setDrawingTool(std::shared_ptr<DrawingTool> dt) {
-    m_dt = dt;
-  }
+  void setDrawingTool(std::shared_ptr<DrawingTool> dt);
 
   /**
    * Draws the object using the  information and data provided by \a dci by
@@ -102,11 +130,7 @@ public:
    * \param dci The struct containing all necessary information about the
    *        drawing context.
    */
-  void draw(DrawingContextInfo& dci) {
-    if (m_dt != nullptr) {
-      m_dt->draw(dci);
-    }
-  }
+  void draw(DrawingContextInfo& dci) const;
 
 private:
   std::shared_ptr<DrawingTool> m_dt = nullptr;
