@@ -129,7 +129,7 @@ public:
    *
    * \return A (smart) pointer to the \c DrawingTool object of this \c Drawable.
    */
-  virtual std::shared_ptr<DrawingTool<T>> getDrawingTool() const {
+  std::shared_ptr<DrawingTool<T>> getDrawingTool() const {
     return m_dt;
   }
 
@@ -140,7 +140,7 @@ public:
    * \param dt A (smart) pointer to the \c DrawingTool object that will be
    *        set as the \c DrawingTool object of this \c Drawable.
    */
-  virtual void setDrawingTool(std::shared_ptr<DrawingTool<T>> dt) {
+  void setDrawingTool(std::shared_ptr<DrawingTool<T>> dt) {
     m_dt = dt;
   }
 
