@@ -24,7 +24,8 @@ namespace tetris {
 
 DefaultGame::DefaultGame(std::shared_ptr<GameBoard> gameBoard,
                          std::vector<std::shared_ptr<Shape>> shapes)
-  : m_game_board(gameBoard), m_shapes(shapes), m_game_over(false)
+  : Game(),
+    m_game_board(gameBoard), m_shapes(shapes), m_game_over(false)
 {
   if (m_game_board == nullptr) {
     throw std::invalid_argument("A null game board is not allowed.");
@@ -105,6 +106,13 @@ void DefaultGame::moveLeft() {
 
 void DefaultGame::moveRight() {
   m_game_board->moveRight();
+}
+
+void DefaultGame::draw(DrawingContextInfo& dci) const {
+  const std::shared_ptr<DrawingTool<Game>>& dt = getDrawingTool();
+  if (dt != nullptr) {
+    dt->draw(*this, dci);
+  }
 }
 
 void DefaultGame::newShape() {

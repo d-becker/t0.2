@@ -59,6 +59,8 @@ class DefaultGameBoard : public GameBoard
     virtual void moveRight() override;
 
     virtual void clear() override;
+
+    virtual void draw(DrawingContextInfo& dci) const override;
   protected:
     std::vector<Coords> getAbsolutePositions(std::shared_ptr<const Shape> shape,
                                              const Coords& coords) const;

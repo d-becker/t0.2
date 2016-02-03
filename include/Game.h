@@ -27,9 +27,12 @@ namespace tetris {
  * updating the game. The GUI event handlers should normally call the methods
  * of this class.
  */
-class Game : public Drawable
+class Game : public Drawable<Game>
 {
   public:
+    Game() : Drawable<Game>() {}
+    Game(const Game& other) : Drawable<Game>(other) {}
+    Game(Game&& other) : Drawable<Game>(other) {}
     virtual ~Game() {}
 
     /**

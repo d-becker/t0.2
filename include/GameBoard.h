@@ -29,9 +29,12 @@ namespace tetris {
 class Board;
 class Shape;
 
-class GameBoard : public Drawable
+class GameBoard : public Drawable<GameBoard>
 {
   public:
+    GameBoard() : Drawable<GameBoard>() {}
+    GameBoard(const GameBoard& other) : Drawable<GameBoard>(other) {}
+    GameBoard(GameBoard&& other) : Drawable<GameBoard>(other) {}
     virtual ~GameBoard() {}
 
     /**

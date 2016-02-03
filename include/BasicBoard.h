@@ -41,6 +41,8 @@ class BasicBoard : public Board
 
     virtual void removeRow(int row) override;
     virtual void clear() override;
+
+    virtual void draw(DrawingContextInfo& dci) const override;
   private:
     // This method is declared const so it can be used by the const version of
     // get, but returns a mutable smart pointer so that it can be returned

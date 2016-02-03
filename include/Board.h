@@ -33,9 +33,12 @@ class Block;
  * corner, the first coordinate is for the vertical, the second coordinate is
  * for the horizontal direction.
  */
-class Board : public Drawable
+class Board : public Drawable<Board>
 {
   public:
+    Board() : Drawable<Board>() {}
+    Board(const Board& other) : Drawable<Board>(other) {}
+    Board(Board&& other) : Drawable<Board>(other) {}
     virtual ~Board() {}
 
     /**

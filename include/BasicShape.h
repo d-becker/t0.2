@@ -44,6 +44,7 @@ public:
   virtual void rotateLeft() override;
 
   virtual std::shared_ptr<Shape> clone() const override;
+  virtual void draw(DrawingContextInfo& dci) const override;
 protected:
 private:
   class PIMPL;

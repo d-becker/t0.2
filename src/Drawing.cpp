@@ -20,45 +20,4 @@
 
 namespace tetris {
 
-Drawable::Drawable()
-  : m_dt(nullptr)
-{
-
-}
-
-Drawable::~Drawable() {
-  // Destructor.
-}
-
-Drawable::Drawable(const Drawable& other)
-{
-  if (other.m_dt != nullptr) {
-    m_dt = other.m_dt->copy(*this);
-    std::cerr << "Copy constructor of Drawable.\n";
-  }
-}
-
-Drawable::Drawable(Drawable&& other)
-{
-  if (other.m_dt != nullptr) {
-    m_dt = other.m_dt->copy(*this);
-    std::cerr << "Move constructor of Drawable.\n";
-  }
-}
-
-
-std::shared_ptr<DrawingTool> Drawable::getDrawingTool() {
-  return m_dt;
-}
-
-void Drawable::setDrawingTool(std::shared_ptr<DrawingTool> dt) {
-  m_dt = dt;
-}
-
-void Drawable::draw(DrawingContextInfo& dci) const {
-  if (m_dt != nullptr) {
-    m_dt->draw(dci);
-  }
-}
-
 } // namespace tetris.

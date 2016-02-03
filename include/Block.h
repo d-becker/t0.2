@@ -24,13 +24,17 @@
 
 namespace tetris {
 
+
+
 /**
  * A common interface for blocks that constitute <tt>Shape</tt>s.
  */
-
-class Block : public Drawable
+class Block : public Drawable<Block>
 {
   public:
+    Block() : Drawable<Block>() {}
+    Block(const Block& other) : Drawable<Block>(other) {}
+
     virtual ~Block() {}
 
     /**

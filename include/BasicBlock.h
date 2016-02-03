@@ -28,11 +28,12 @@ namespace tetris {
 class BasicBlock : public Block
 {
   public:
-    BasicBlock() = default;
+    BasicBlock();
     virtual ~BasicBlock();
-    BasicBlock(const BasicBlock& other) = default;
+    BasicBlock(const BasicBlock& other);
 
     virtual std::shared_ptr<Block> clone() const override;
+    virtual void draw(DrawingContextInfo& dci) const override;
 };
 
 } // namespace tetris.

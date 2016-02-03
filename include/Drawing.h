@@ -27,6 +27,7 @@ namespace tetris {
  */
 class DrawingContextInfo;
 
+template <class T>
 class Drawable; // Forward declaration to let DrawingTool use it.
 
 /**
@@ -34,8 +35,9 @@ class Drawable; // Forward declaration to let DrawingTool use it.
  * logic for a tetris object. More information can be found in the description
  * of the \c Drawable class.
  */
+template <class T>
 class DrawingTool {
-  friend class Drawable;
+  friend class Drawable<T>;
 public:
   virtual ~DrawingTool() {}
 
@@ -50,10 +52,11 @@ public:
    * Draws the object it is associated with using the information and data
    * provided by \a dci.
    *
+   * \param parent The parent object associated with this \c DrawingTool.
    * \param dci The struct containing all necessary information about the
    *        drawing context.
    */
-  virtual void draw(DrawingContextInfo& dci) = 0;
+  virtual void draw(const T& parent, DrawingContextInfo& dci) = 0;
 
 protected:
   /**
@@ -66,11 +69,9 @@ protected:
    * All subclasses of \c DrawingTool should override this method to allow
    * correct polymorphic copying.
    *
-   * \param parent The parent of the new \c DrawingTool.
-   *
    * \return A deep copy of this \c DrawingTool whose parent will be \a parent.
    */
-  virtual std::shared_ptr<DrawingTool> copy(const Drawable& parent) const = 0;
+  virtual std::shared_ptr<DrawingTool<T>> copy() const = 0;
 };
 
 /**
@@ -98,20 +99,39 @@ protected:
  * implement its \a draw method in a way that can handle the framework-specific
  * \c DrawingContextInfo.
  */
+template <class T>
 class Drawable {
 public:
-  Drawable();
-  virtual ~Drawable() = 0;
+  Drawable()
+    : m_dt(nullptr)
+  {
 
-  Drawable(const Drawable& other);
-  Drawable(Drawable&& other);
+  }
+
+  virtual ~Drawable() {};
+
+  Drawable(const Drawable<T>& other)
+  {
+    if (other.m_dt != nullptr) {
+      m_dt = other.m_dt->copy();
+    }
+  }
+
+  Drawable(Drawable<T>&& other)
+  {
+    if (other.m_dt != nullptr) {
+      m_dt = other.m_dt->copy();
+    }
+  }
 
   /**
    * Returns a (smart) pointer to the \c DrawingTool object of this \c Drawable.
    *
    * \return A (smart) pointer to the \c DrawingTool object of this \c Drawable.
    */
-  std::shared_ptr<DrawingTool> getDrawingTool();
+  virtual std::shared_ptr<DrawingTool<T>> getDrawingTool() const {
+    return m_dt;
+  }
 
   /**
    * Sets the \c DrawingTool object of this \c Drawable to the one pointed to
@@ -120,20 +140,22 @@ public:
    * \param dt A (smart) pointer to the \c DrawingTool object that will be
    *        set as the \c DrawingTool object of this \c Drawable.
    */
-  void setDrawingTool(std::shared_ptr<DrawingTool> dt);
+  virtual void setDrawingTool(std::shared_ptr<DrawingTool<T>> dt) {
+    m_dt = dt;
+  }
 
   /**
-   * Draws the object using the  information and data provided by \a dci by
-   * calling the \a draw method of the associated \c DrawingTool object if
-   * that is not null; otherwise it does nothing.
+   * Draws the object using the  information and data provided by \a dci,
+   * normally by calling the \a draw method of the associated \c DrawingTool
+   * object if that is not null; otherwise it does nothing.
    *
    * \param dci The struct containing all necessary information about the
    *        drawing context.
    */
-  void draw(DrawingContextInfo& dci) const;
+  virtual void draw(DrawingContextInfo& dci) const = 0;
 
-private:
-  std::shared_ptr<DrawingTool> m_dt = nullptr;
+protected:
+  std::shared_ptr<DrawingTool<T>> m_dt = nullptr;
 };
 
 } // namespace tetris.

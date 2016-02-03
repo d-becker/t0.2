@@ -98,7 +98,8 @@ public:
 
 BasicShape::BasicShape(int bbox_size, vector<Coords> coords,
                        vector<shared_ptr<Block>> blocks)
-  : m_pimpl(new PIMPL(bbox_size, coords, blocks))
+  : Shape(),
+    m_pimpl(new PIMPL(bbox_size, coords, blocks))
 {
 
 
@@ -109,7 +110,8 @@ BasicShape::BasicShape(const BasicShape& other)
    m_pimpl(new PIMPL(*other.m_pimpl)) {}
 
 BasicShape::BasicShape(BasicShape&& other)
- : Shape(other), m_pimpl(other.m_pimpl)
+ : Shape(other),
+   m_pimpl(other.m_pimpl)
 {
   other.m_pimpl = nullptr;
 }
@@ -180,6 +182,13 @@ void BasicShape::rotateLeft() {
 
 shared_ptr<Shape> BasicShape::clone() const {
   return make_shared<BasicShape>(*this);
+}
+
+void BasicShape::draw(DrawingContextInfo& dci) const {
+  const std::shared_ptr<DrawingTool<Shape>>& dt = getDrawingTool();
+  if (dt != nullptr) {
+    dt->draw(*this, dci);
+  }
 }
 
 } // namespace tetris.

@@ -21,6 +21,18 @@ using namespace std;
 
 namespace tetris {
 
+BasicBlock::BasicBlock()
+  : Block()
+{
+
+}
+
+BasicBlock::BasicBlock(const BasicBlock& other)
+  : Block(other)
+{
+
+}
+
 BasicBlock::~BasicBlock()
 {
   //dtor
@@ -28,6 +40,13 @@ BasicBlock::~BasicBlock()
 
 shared_ptr<Block> BasicBlock::clone() const {
   return make_shared<BasicBlock>(*this);
+}
+
+void BasicBlock::draw(DrawingContextInfo& dci) const {
+  const std::shared_ptr<DrawingTool<Block>>& dt = getDrawingTool();
+  if (dt != nullptr) {
+    dt->draw(*this, dci);
+  }
 }
 
 } // namespace tetris.

@@ -26,7 +26,8 @@ using namespace std;
 namespace tetris {
 
 DefaultGameBoard::DefaultGameBoard(shared_ptr<Board> board)
-  : m_board(board)
+  : GameBoard(),
+    m_board(board)
 {
   if (board == nullptr) {
     throw invalid_argument("A null board is not allowed.");
@@ -145,6 +146,14 @@ void DefaultGameBoard::clear() {
   m_board->clear();
   m_current_shape = nullptr;
 }
+
+void DefaultGameBoard::draw(DrawingContextInfo& dci) const {
+  const std::shared_ptr<DrawingTool<GameBoard>>& dt = getDrawingTool();
+  if (dt != nullptr) {
+    dt->draw(*this, dci);
+  }
+}
+
 
 // Private methods.
 

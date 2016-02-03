@@ -43,6 +43,8 @@ class DefaultGame : public Game
     virtual void rotateRight() override;
     virtual void moveLeft() override;
     virtual void moveRight() override;
+
+    virtual void draw(DrawingContextInfo& dci) const override;
   protected:
   private:
     void newShape();

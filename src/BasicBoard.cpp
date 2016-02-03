@@ -21,7 +21,8 @@ using namespace std;
 namespace tetris {
 
 BasicBoard::BasicBoard(int height, int width)
-  : m_height(height), m_width(width),
+  : Board(),
+    m_height(height), m_width(width),
     m_table(height, vector<shared_ptr<Block>>(width, nullptr)) {
   if (m_height < 1) {
     throw invalid_argument("Zero or negative height is not allowed.");
@@ -75,6 +76,13 @@ void BasicBoard::clear() {
     for (std::shared_ptr<Block>& block : row) {
       block = nullptr;
     }
+  }
+}
+
+void BasicBoard::draw(DrawingContextInfo& dci) const {
+  const std::shared_ptr<DrawingTool<Board>>& dt = getDrawingTool();
+  if (dt != nullptr) {
+    dt->draw(*this, dci);
   }
 }
 
