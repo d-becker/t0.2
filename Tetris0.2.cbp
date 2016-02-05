@@ -178,6 +178,7 @@
 			<Option target="Lib-Debug" />
 			<Option target="Lib-Release" />
 		</Unit>
+		<Unit filename="include/Timeout.h" />
 		<Unit filename="main.cpp">
 			<Option target="Debug" />
 		</Unit>
@@ -190,9 +191,9 @@
 		<Unit filename="src/Coords.cpp" />
 		<Unit filename="src/DefaultGame.cpp" />
 		<Unit filename="src/DefaultGameBoard.cpp" />
-		<Unit filename="src/Drawing.cpp" />
 		<Unit filename="src/TetrominoO.cpp" />
 		<Unit filename="src/TetrominoT.cpp" />
+		<Unit filename="src/Timeout.cpp" />
 		<Extensions>
 			<envvars />
 			<code_completion />
