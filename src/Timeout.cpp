@@ -75,8 +75,16 @@ Timeout::Timeout(std::function<void(void)> func, unsigned int interval)
   }).detach();
 }
 
+Timeout::Timeout(Timeout&& other)
+  : m_state(other.m_state)
+{
+  other.m_state = nullptr;
+}
+
 Timeout::~Timeout() {
-  m_state->stop();
+  if (m_state != nullptr) {
+    m_state->stop();
+  }
 }
 
 bool Timeout::isRunning() const {

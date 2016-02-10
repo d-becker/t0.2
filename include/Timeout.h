@@ -46,6 +46,17 @@ class Timeout
      */
     Timeout(std::function<void(void)> function, unsigned int interval);
 
+    Timeout(const Timeout& other) = delete;
+
+    /**
+     * Move-constructs a \c Timeout object. After the call, the state of the
+     * original \c Timeout object is owned by the new object. If the original
+     * object was running, the new one will continue to run.
+     *
+     * \param other The \c Timeout object to move from.
+     */
+    Timeout(Timeout&& other);
+
     /**
      * Stops this \c Timeout object and destructs it.
      */
@@ -93,6 +104,6 @@ class Timeout
     std::shared_ptr<ThreadSafeState> m_state;
 };
 
-} // namespace tetris-
+} // namespace tetris.
 
 #endif // TIMEOUT_H

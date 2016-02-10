@@ -125,6 +125,7 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
+		<Unit filename="include/BasicGameFlow.h" />
 		<Unit filename="include/BasicShape.h">
 			<Option target="Debug" />
 			<Option target="Release" />
@@ -137,6 +138,7 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
+		<Unit filename="include/Commands.h" />
 		<Unit filename="include/Coords.h">
 			<Option target="Debug" />
 			<Option target="Release" />
@@ -162,6 +164,7 @@
 			<Option target="Debug" />
 			<Option target="Lib-Debug" />
 		</Unit>
+		<Unit filename="include/GameFlow.h" />
 		<Unit filename="include/Shape.h">
 			<Option target="Debug" />
 			<Option target="Release" />
@@ -187,6 +190,7 @@
 		</Unit>
 		<Unit filename="src/BasicBlock.cpp" />
 		<Unit filename="src/BasicBoard.cpp" />
+		<Unit filename="src/BasicGameFlow.cpp" />
 		<Unit filename="src/BasicShape.cpp" />
 		<Unit filename="src/Coords.cpp" />
 		<Unit filename="src/DefaultGame.cpp" />
