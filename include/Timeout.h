@@ -39,7 +39,7 @@ class Timeout
 {
   public:
     /**
-     * Constructs a new \c Timeout object and starts it immediately.
+     * Constructs a new \c Timeout object and without starting it.
      *
      * \param function The function object to call periodically.
      * \param interval The interval in milliseconds.
@@ -71,6 +71,12 @@ class Timeout
     bool isRunning() const;
 
     /**
+     * Starts or restarts this \c Timeout object. If it is already running,
+     * nothing is done.
+     */
+    void start();
+
+    /**
      * Stops this \c Timeout object.
      */
     void stop();
@@ -89,6 +95,20 @@ class Timeout
      *        of this \c Timeout object-
      */
     void setInterval(unsigned int interval);
+
+    /**
+     * Returns a copy of the function object to call periodically.
+     *
+     * \return function The function object to call periodically.
+     */
+    std::function<void(void)> getFunction() const;
+
+    /**
+     * Sets the function object to call periodically.
+     *
+     * \param function The function object to call periodically.
+     */
+    void setFunction(std::function<void(void)> function);
   protected:
   private:
     class ThreadSafeState;

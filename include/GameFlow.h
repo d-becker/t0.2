@@ -70,7 +70,8 @@ class GameFlow
     /**
      * Binds an input id to an existing command with name \a name.
      * If the input id is already bound to a command, that binding is deleted
-     * and the new binding made. If the command binding does not exist,
+     * and the new binding made. If the command is already bound to another
+     * input id, that binding is deleted. If the command binding does not exist,
      * it is not created.
      *
      * \param id The id of the input to bind to \a name.
@@ -110,10 +111,10 @@ class GameFlow
 
     /**
      * Returns the interval in milliseconds with which the timeout function
-     * is called.
+     * is called or 0 if there is no timeout running.
      *
      * \return The interval in milliseconds with which the timeout function
-     *         is called.
+     *         is called, or 0 if there is no timeout running.
      */
     virtual unsigned int getTimeoutInterval() const = 0;
 

@@ -54,6 +54,11 @@ public:
     return m_func;
   }
 
+  void setFunction(std::function<void(void)> function) {
+    std::lock_guard<std::mutex> lock(m_mutex);
+    m_func = function;
+  }
+
 private:
   std::function<void(void)> m_func;
   unsigned int m_interval;
@@ -65,14 +70,7 @@ private:
 Timeout::Timeout(std::function<void(void)> func, unsigned int interval)
   : m_state(std::make_shared<ThreadSafeState>(func, interval))
 {
-  std::shared_ptr<ThreadSafeState> state_ptr = m_state;
-  std::thread([state_ptr]() {
-    while (state_ptr->isRunning()) {
-      state_ptr->getFunction()();
-      unsigned int interval = state_ptr->getInterval();
-      std::this_thread::sleep_for(std::chrono::milliseconds(interval));
-    }
-  }).detach();
+
 }
 
 Timeout::Timeout(Timeout&& other)
@@ -91,6 +89,19 @@ bool Timeout::isRunning() const {
   return m_state->isRunning();
 }
 
+void Timeout::start() {
+  if (!isRunning()) {
+    std::shared_ptr<ThreadSafeState> state_ptr = m_state;
+    std::thread([state_ptr]() {
+      while (state_ptr->isRunning()) {
+        state_ptr->getFunction()();
+        unsigned int interval = state_ptr->getInterval();
+        std::this_thread::sleep_for(std::chrono::milliseconds(interval));
+      }
+    }).detach();
+  }
+}
+
 void Timeout::stop() {
   m_state->stop();
 }
@@ -101,6 +112,14 @@ unsigned int Timeout::getInterval() const {
 
 void Timeout::setInterval(unsigned int interval) {
   m_state->setInterval(interval);
+}
+
+std::function<void(void)> Timeout::getFunction() const {
+  return std::function<void(void)>(m_state->getFunction());
+}
+
+void Timeout::setFunction(std::function<void(void)> function) {
+  m_state->setFunction(function);
 }
 
 } // namespace tetris-
