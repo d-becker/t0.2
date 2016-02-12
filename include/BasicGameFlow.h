@@ -42,12 +42,15 @@ class BasicGameFlow : public GameFlow
     virtual bool isPaused() const override;
 
   protected:
-    void on_advance();
-    void on_move_down();
-    void on_move_left();
-    void on_move_right();
-    void on_rotate_left();
-    void on_rotate_right();
+    virtual void on_advance();
+    virtual void on_move_down();
+    virtual void on_move_left();
+    virtual void on_move_right();
+    virtual void on_rotate_left();
+    virtual void on_rotate_right();
+    virtual void on_drop();
+
+    virtual void on_game_over();
   private:
     // Returns -1 if name is not contained in m_command_bindings.
     unsigned int index_of_command_with_name(std::string name) const;

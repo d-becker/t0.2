@@ -34,6 +34,23 @@ public:
     return m_running;
   }
 
+  void start() {
+    if (!isRunning()) {
+      {
+        std::lock_guard<std::mutex> lock(m_mutex);
+        m_running = true;
+      }
+
+      std::thread([&, this]() {
+        while (isRunning()) {
+          getFunction()();
+          unsigned int interval = getInterval();
+          std::this_thread::sleep_for(std::chrono::milliseconds(interval));
+        }
+      }).detach();
+    }
+  }
+
   void stop() {
     std::lock_guard<std::mutex> lock(m_mutex);
     m_running = false;
@@ -90,16 +107,7 @@ bool Timeout::isRunning() const {
 }
 
 void Timeout::start() {
-  if (!isRunning()) {
-    std::shared_ptr<ThreadSafeState> state_ptr = m_state;
-    std::thread([state_ptr]() {
-      while (state_ptr->isRunning()) {
-        state_ptr->getFunction()();
-        unsigned int interval = state_ptr->getInterval();
-        std::this_thread::sleep_for(std::chrono::milliseconds(interval));
-      }
-    }).detach();
-  }
+  m_state->start();
 }
 
 void Timeout::stop() {

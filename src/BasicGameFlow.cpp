@@ -18,6 +18,7 @@ BasicGameFlow::BasicGameFlow(std::shared_ptr<Game> game, unsigned int interval)
   makeNewCommand("move_right", [&, this]() { on_move_right(); });
   makeNewCommand("rotate_left", [&, this]() { on_rotate_left(); });
   makeNewCommand("rotate_right", [&, this]() { on_rotate_right(); });
+  makeNewCommand("drop", [&, this]() { on_drop(); });
   makeNewCommand("pause", [&, this]() { pause(); });
   makeNewCommand("resume", [&, this]() { resume(); });
   makeNewCommand("toggle_paused", [&, this]() { if (isPaused()) resume();
@@ -50,7 +51,7 @@ void BasicGameFlow::setGame(std::shared_ptr<Game> game) {
 bool BasicGameFlow::makeNewCommand(std::string name,
                                    std::function<void(void)> func) {
   unsigned int index = index_of_command_with_name(name);
-  if (index == -1u) {
+  if (index != -1u) {
     return false;
   }
 
@@ -119,12 +120,12 @@ void BasicGameFlow::processInput(InputID id) {
 
   name = it->second;
 
-  std::lock_guard<std::mutex> lock_command_bindings(m_command_bindings_mutex);
   unsigned int index = index_of_command_with_name(name);
   if (index == -1u) {
     return;
   }
 
+  std::lock_guard<std::mutex> lock_command_bindings(m_command_bindings_mutex);
   Command& cmd = m_command_bindings[index];
   cmd.function.operator() ();
 }
@@ -191,6 +192,12 @@ void BasicGameFlow::on_advance() {
     std::lock_guard<std::mutex> lock_game(m_game_mutex);
     m_game->advance();
   }
+
+  if (isGameOver()) {
+    on_game_over();
+  }
+
+  draw();
 }
 
 void BasicGameFlow::on_move_down() {
@@ -202,6 +209,8 @@ void BasicGameFlow::on_move_left() {
     std::lock_guard<std::mutex> lock_game(m_game_mutex);
     m_game->moveLeft();
   }
+
+  draw();
 }
 
 void BasicGameFlow::on_move_right() {
@@ -209,6 +218,8 @@ void BasicGameFlow::on_move_right() {
     std::lock_guard<std::mutex> lock_game(m_game_mutex);
     m_game->moveRight();
   }
+
+  draw();
 }
 
 void BasicGameFlow::on_rotate_left() {
@@ -216,6 +227,8 @@ void BasicGameFlow::on_rotate_left() {
     std::lock_guard<std::mutex> lock_game(m_game_mutex);
     m_game->rotateLeft();
   }
+
+  draw();
 }
 
 void BasicGameFlow::on_rotate_right() {
@@ -223,6 +236,21 @@ void BasicGameFlow::on_rotate_right() {
     std::lock_guard<std::mutex> lock_game(m_game_mutex);
     m_game->rotateRight();
   }
+
+  draw();
+}
+
+void BasicGameFlow::on_drop() {
+  if (!isPaused()) {
+    std::lock_guard<std::mutex> lock_game(m_game_mutex);
+    m_game->drop();
+  }
+
+  draw();
+}
+
+void BasicGameFlow::on_game_over() {
+  pause();
 }
 
 // Private methods.
