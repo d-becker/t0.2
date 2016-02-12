@@ -138,7 +138,6 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
-		<Unit filename="include/Commands.h" />
 		<Unit filename="include/Coords.h">
 			<Option target="Debug" />
 			<Option target="Release" />
