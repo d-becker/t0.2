@@ -128,13 +128,12 @@ bool BasicGameFlow::unbindInput(InputID id) {
 
 void BasicGameFlow::processInput(InputID id) {
   std::lock_guard<std::mutex> lock_input_bindings(m_input_bindings_mutex);
-  std::string name;
   auto it = m_input_bindings.find(id);
   if (it == m_input_bindings.end()) {
     return;
   }
 
-  name = it->second;
+  std::string name = it->second;
 
   unsigned int index = index_of_command_with_name(name);
   if (index == -1u) {

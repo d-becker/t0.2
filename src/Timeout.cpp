@@ -23,8 +23,9 @@ public:
   ThreadSafeState(std::function<void(void)> func, unsigned int interval)
    : m_func(func),
      m_interval(interval),
+     m_current_thread(0u),
      m_running(true),
-     m_mutex()
+     m_mutex {}
   {
 
   }
@@ -34,6 +35,16 @@ public:
     return m_running;
   }
 
+  unsigned int getCurrentThread() const {
+    std::lock_guard<std::mutex> lock(m_mutex);
+    return m_current_thread;
+  }
+
+  void incrementCurrentThread() {
+    std::lock_guard<std::mutex> lock(m_mutex);
+    ++m_current_thread;
+  }
+
   void start() {
     if (!isRunning()) {
       {
@@ -41,8 +52,11 @@ public:
         m_running = true;
       }
 
-      std::thread([&, this]() {
-        while (isRunning()) {
+      incrementCurrentThread();
+
+      std::thread([&this]() {
+        unsigned int current_thread = getCurrentThread(); // Copying.
+        while ( isRunning() && (current_thread == getCurrentThread()) ) {
           getFunction()();
           unsigned int interval = getInterval();
           std::this_thread::sleep_for(std::chrono::milliseconds(interval));
@@ -79,6 +93,7 @@ public:
 private:
   std::function<void(void)> m_func;
   unsigned int m_interval;
+  unsigned int m_current_thread; // Well-defined unsigned overflow.
   bool m_running;
   mutable std::mutex m_mutex; // Protects all members.
 };
