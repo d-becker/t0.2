@@ -168,18 +168,23 @@
 			<Option target="Debug" />
 			<Option target="Release" />
 		</Unit>
+		<Unit filename="include/TetrominoI.h" />
+		<Unit filename="include/TetrominoJ.h" />
+		<Unit filename="include/TetrominoL.h" />
 		<Unit filename="include/TetrominoO.h">
 			<Option target="Debug" />
 			<Option target="Release" />
 			<Option target="Lib-Debug" />
 			<Option target="Lib-Release" />
 		</Unit>
+		<Unit filename="include/TetrominoS.h" />
 		<Unit filename="include/TetrominoT.h">
 			<Option target="Debug" />
 			<Option target="Release" />
 			<Option target="Lib-Debug" />
 			<Option target="Lib-Release" />
 		</Unit>
+		<Unit filename="include/TetrominoZ.h" />
 		<Unit filename="include/Timeout.h" />
 		<Unit filename="main.cpp">
 			<Option target="Debug" />
@@ -194,8 +199,13 @@
 		<Unit filename="src/Coords.cpp" />
 		<Unit filename="src/DefaultGame.cpp" />
 		<Unit filename="src/DefaultGameBoard.cpp" />
+		<Unit filename="src/TetrominoI.cpp" />
+		<Unit filename="src/TetrominoJ.cpp" />
+		<Unit filename="src/TetrominoL.cpp" />
 		<Unit filename="src/TetrominoO.cpp" />
+		<Unit filename="src/TetrominoS.cpp" />
 		<Unit filename="src/TetrominoT.cpp" />
+		<Unit filename="src/TetrominoZ.cpp" />
 		<Unit filename="src/Timeout.cpp" />
 		<Extensions>
 			<envvars />
