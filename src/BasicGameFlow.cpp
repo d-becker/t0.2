@@ -107,12 +107,13 @@ bool BasicGameFlow::bindInput(InputID id, std::string command_name) {
   }
 
   // Checking if the command is already bound to an input id.
-  InputID previous_id;
-  bool exists = is_command_bound_to_input_id(command_name, previous_id);
-
-  if (exists) {
-    unbindInput(previous_id);
-  }
+  // Testing what happens without it.
+//  InputID previous_id;
+//  bool exists = is_command_bound_to_input_id(command_name, previous_id);
+//
+//  if (exists) {
+//    unbindInput(previous_id);
+//  }
 
   // Creating the new binding.
   std::lock_guard<std::mutex> lock_input_bindings(m_input_bindings_mutex);

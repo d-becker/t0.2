@@ -41,13 +41,6 @@ class DrawingTool {
 public:
   virtual ~DrawingTool() {}
 
-//  /**
-//   * Returns the tetris object that this \c DrawingTool is associated with.
-//   *
-//   * \return The tetris object that this \c DrawingTool is associated with.
-//   */
-//  virtual const Drawable& getParent() const = 0;
-
   /**
    * Draws the object it is associated with using the information and data
    * provided by \a dci.
@@ -60,11 +53,7 @@ public:
 
 protected:
   /**
-   * Returns a deep copy of this \c DrawingTool whose parent will be \a parent.
-   * The argument <em>parent</em>'s type must be the same or a subclass of
-   * the type of the parent of this \c DrawingTool object;
-   * otherwise the behaviour is undefined. It is the user's responsibility
-   * to ensure that this condition is met.
+   * Returns a deep copy of this \c DrawingTool.
    *
    * All subclasses of \c DrawingTool should override this method to allow
    * correct polymorphic copying.
@@ -85,6 +74,10 @@ protected:
  * the associated \c DrawingTool object. Using the provided getter and setter,
  * the \c DrawingTool object, and therefore the drawing logic of the
  * \c Drawable, can be changed at any time.
+ *
+ * Normally, when inheriting from \c Drawable, the template argument is
+ * the name of the new subclass, for example class \c Shape inherits from
+ * \c Drawable<Shape>.
  *
  * The \a draw method of the \c Drawable class (and consequently the same
  * method of the \c DrawingTool class) takes a \c DrawingContextInfo object
