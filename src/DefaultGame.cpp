@@ -122,11 +122,15 @@ void DefaultGame::draw(DrawingContextInfo& dci) const {
 }
 
 void DefaultGame::newShape() {
-  m_game_board->setCurrentShapePosition(  // It would be better in the middle.
-                            Coords(- m_game_board->getHiddenRows(), 0));
-
   unsigned int index = rand() % m_shapes.size();
   m_game_board->setCurrentShape(m_shapes.at(index)->clone());
+
+
+  int vertical_coord = - std::min(m_game_board->getHiddenRows(),
+                                  get_lowest_block_of_current_shape());
+
+  // It would be better in the middle.
+  m_game_board->setCurrentShapePosition(Coords(vertical_coord, 0));
 
   // Random rotations.
   int  rotate_times = rand() % 4;
@@ -144,6 +148,22 @@ bool DefaultGame::top_row_not_empty() {
   }
 
   return false;
+}
+
+int DefaultGame::get_lowest_block_of_current_shape() const {
+  std::shared_ptr<const Shape> current_shape = m_game_board->getCurrentShape();
+  int res = -1;
+  if (current_shape != nullptr) {
+    std::vector<Coords> coords = current_shape->getBlockPositions();
+    for (const Coords& coord : coords) {
+      int vertical = coord.getVertical();
+      if (coord.getVertical() > res) {
+        res = vertical;
+      }
+    }
+  }
+
+  return res;
 }
 
 } // namespace tetris.

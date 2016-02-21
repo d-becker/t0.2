@@ -49,6 +49,9 @@ class DefaultGame : public Game
   private:
     void newShape();
     bool top_row_not_empty();
+    int get_lowest_block_of_current_shape() const; // The row number of the
+                                                   // lowest block of the
+                                                   // current shape.
 
     std::shared_ptr<GameBoard> m_game_board;
     std::vector<std::shared_ptr<Shape>> m_shapes;
