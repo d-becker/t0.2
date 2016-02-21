@@ -48,6 +48,7 @@ class DefaultGame : public Game
   protected:
   private:
     void newShape();
+    bool top_row_not_empty();
 
     std::shared_ptr<GameBoard> m_game_board;
     std::vector<std::shared_ptr<Shape>> m_shapes;

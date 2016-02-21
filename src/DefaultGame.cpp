@@ -20,6 +20,8 @@
 #include <ctime>
 #include <stdexcept>
 
+#include "Board.h"
+
 namespace tetris {
 
 DefaultGame::DefaultGame(std::shared_ptr<GameBoard> gameBoard,
@@ -75,15 +77,14 @@ int DefaultGame::advance() {
     m_game_board->lock();
     res = m_game_board->removeFilledRows();
 
-    // Choosing a new shape.
-    newShape();
     // Checking for game over.
-    if (!m_game_board->isAtValidPos()) {
+    if (top_row_not_empty()) {
       m_game_over = true;
-      m_game_board->setCurrentShape(nullptr);
       return 0;
     }
 
+    // Choosing a new shape.
+    newShape();
   } else {
     m_game_board->moveDown();
   }
@@ -121,7 +122,8 @@ void DefaultGame::draw(DrawingContextInfo& dci) const {
 }
 
 void DefaultGame::newShape() {
-  m_game_board->setCurrentShapePosition(Coords(0, -4)); // It would be better in the middle.
+  m_game_board->setCurrentShapePosition(  // It would be better in the middle.
+                            Coords(- m_game_board->getHiddenRows(), 0));
 
   unsigned int index = rand() % m_shapes.size();
   m_game_board->setCurrentShape(m_shapes.at(index)->clone());
@@ -130,6 +132,18 @@ void DefaultGame::newShape() {
   int  rotate_times = rand() % 4;
   for (int i = 0; i < rotate_times; ++i) { m_game_board->rotateRight(); }
 
+}
+
+bool DefaultGame::top_row_not_empty() {
+  std::shared_ptr<const Board> board = m_game_board->getBoard();
+  int width = board->getWidth();
+  for (int i = 0; i < width; ++i) {
+    if (board->get(0, i) != nullptr) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 } // namespace tetris.

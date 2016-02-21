@@ -27,7 +27,7 @@ class Shape;
 class DefaultGameBoard : public GameBoard
 {
   public:
-    DefaultGameBoard(std::shared_ptr<Board> board);
+    DefaultGameBoard(std::shared_ptr<Board> board, int hidden_rows = 4);
     DefaultGameBoard(const DefaultGameBoard& other) = delete;
     virtual ~DefaultGameBoard();
 
@@ -36,6 +36,7 @@ class DefaultGameBoard : public GameBoard
     virtual std::shared_ptr<const Shape> getCurrentShape() const override;
     virtual void setCurrentShape(std::shared_ptr<Shape> shape) override;
 
+    virtual int getHiddenRows() const override;
 
     virtual Coords getCurrentShapePosition() const override;
     virtual void setCurrentShapePosition(Coords position) override;
@@ -70,6 +71,7 @@ class DefaultGameBoard : public GameBoard
   private:
     std::shared_ptr<Board> m_board;
     std::shared_ptr<Shape> m_current_shape;
+    const int m_hidden_rows;
     Coords m_current_shape_pos = Coords(0, 0);
 };
 

@@ -25,9 +25,10 @@ using namespace std;
 
 namespace tetris {
 
-DefaultGameBoard::DefaultGameBoard(shared_ptr<Board> board)
+DefaultGameBoard::DefaultGameBoard(shared_ptr<Board> board, int hidden_rows)
   : GameBoard(),
-    m_board(board)
+    m_board(board),
+    m_hidden_rows(hidden_rows)
 {
   if (board == nullptr) {
     throw invalid_argument("A null board is not allowed.");
@@ -49,6 +50,10 @@ shared_ptr<const Shape> DefaultGameBoard::getCurrentShape() const {
 
 void DefaultGameBoard::setCurrentShape(std::shared_ptr<Shape> shape) {
   m_current_shape = shape;
+}
+
+int DefaultGameBoard::getHiddenRows() const {
+  return m_hidden_rows;
 }
 
 Coords DefaultGameBoard::getCurrentShapePosition() const {
@@ -173,7 +178,12 @@ bool DefaultGameBoard::isAtValidPos(shared_ptr<Shape> shape,
                                     const Coords& coords) const {
   vector<Coords> abs_pos = getAbsolutePositions(shape, coords);
   for (const Coords& c : abs_pos) {
-    if (!m_board->isValid(c)) { return false; }
+    // The current shape is not within the board.
+    if (!m_board->isValid(c)
+        // The current shape is not in the hidden rows either.
+        && !m_board->isValid(c + Coords(getHiddenRows(), 0))) {
+          return false;
+    }
     if (m_board->get(c) != nullptr) { return false; }
   }
   return true;

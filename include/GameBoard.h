@@ -59,6 +59,13 @@ class GameBoard : public Drawable<GameBoard>
     virtual void setCurrentShape(std::shared_ptr<Shape> shape) = 0;
 
     /**
+     * Returns the number of hidden rows on the top of the game board.
+     *
+     * \return The number of hidden rows on the top of the game board.
+     */
+    virtual int getHiddenRows() const = 0;
+
+    /**
      * Returns the current shape's position.
      *
      * \return The current shape's position.

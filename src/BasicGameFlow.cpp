@@ -18,8 +18,6 @@
 
 #include <stdexcept>
 
-#include <iostream> //////////////////////////////////////////////////////////////////////////////////////////////////
-
 namespace tetris {
 
 BasicGameFlow::BasicGameFlow(std::shared_ptr<Game> game, unsigned int interval)
@@ -270,7 +268,6 @@ void BasicGameFlow::on_drop() {
 
 void BasicGameFlow::on_game_over() {
   pause();
-  std::cerr << "Game over.\n";
 }
 
 // Private methods.
