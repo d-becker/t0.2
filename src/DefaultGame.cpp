@@ -66,6 +66,10 @@ void DefaultGame::newGame() {
 }
 
 int DefaultGame::advance() {
+  if (m_game_over) {
+    return 0;
+  }
+
   int res = 0;
   if (m_game_board->hasLanded()) {
     m_game_board->lock();
@@ -73,10 +77,11 @@ int DefaultGame::advance() {
 
     // Choosing a new shape.
     newShape();
-
     // Checking for game over.
     if (!m_game_board->isAtValidPos()) {
       m_game_over = true;
+      m_game_board->setCurrentShape(nullptr);
+      return 0;
     }
 
   } else {
@@ -116,7 +121,7 @@ void DefaultGame::draw(DrawingContextInfo& dci) const {
 }
 
 void DefaultGame::newShape() {
-  m_game_board->setCurrentShapePosition(Coords(0, 0)); // It would be better in the middle.
+  m_game_board->setCurrentShapePosition(Coords(0, -4)); // It would be better in the middle.
 
   unsigned int index = rand() % m_shapes.size();
   m_game_board->setCurrentShape(m_shapes.at(index)->clone());

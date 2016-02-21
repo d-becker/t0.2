@@ -18,6 +18,8 @@
 
 #include <stdexcept>
 
+#include <iostream> //////////////////////////////////////////////////////////////////////////////////////////////////
+
 namespace tetris {
 
 BasicGameFlow::BasicGameFlow(std::shared_ptr<Game> game, unsigned int interval)
@@ -204,13 +206,14 @@ bool BasicGameFlow::isPaused() const {
 
 // Protected methods.
 void BasicGameFlow::on_advance() {
+  if (isGameOver()) {
+    on_game_over();
+    return;
+  }
+
   if (!isPaused()) {
     std::lock_guard<std::mutex> lock_game(m_game_mutex);
     m_game->advance();
-  }
-
-  if (isGameOver()) {
-    on_game_over();
   }
 
   draw();
@@ -267,6 +270,7 @@ void BasicGameFlow::on_drop() {
 
 void BasicGameFlow::on_game_over() {
   pause();
+  std::cerr << "Game over.\n";
 }
 
 // Private methods.
