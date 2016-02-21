@@ -28,6 +28,9 @@ namespace tetris {
 
 class Block;
 
+/**
+ * A base interface for all shapes (tetrominoes or other shapes).
+ */
 class Shape : public Drawable<Shape>
 {
   public:

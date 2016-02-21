@@ -106,15 +106,6 @@ bool BasicGameFlow::bindInput(InputID id, std::string command_name) {
     return false;
   }
 
-  // Checking if the command is already bound to an input id.
-  // Testing what happens without it.
-//  InputID previous_id;
-//  bool exists = is_command_bound_to_input_id(command_name, previous_id);
-//
-//  if (exists) {
-//    unbindInput(previous_id);
-//  }
-
   // Creating the new binding.
   std::lock_guard<std::mutex> lock_input_bindings(m_input_bindings_mutex);
   m_input_bindings[id] = command_name;
@@ -203,67 +194,67 @@ bool BasicGameFlow::isPaused() const {
 }
 
 // Protected methods.
-void BasicGameFlow::on_advance() {
+int BasicGameFlow::on_advance() {
   if (isGameOver()) {
     on_game_over();
-    return;
+    return 0;
   }
 
-  if (!isPaused()) {
-    std::lock_guard<std::mutex> lock_game(m_game_mutex);
-    m_game->advance();
+  if (isPaused()) {
+    return 0;
   }
 
+  std::lock_guard<std::mutex> lock_game(m_game_mutex);
+  int res = m_game->advance();
   draw();
+  return res;
 }
 
-void BasicGameFlow::on_move_down() {
-  on_advance();
+int BasicGameFlow::on_move_down() {
+  return on_advance();
 }
 
 void BasicGameFlow::on_move_left() {
   if (!isPaused()) {
     std::lock_guard<std::mutex> lock_game(m_game_mutex);
     m_game->moveLeft();
+    draw();
   }
-
-  draw();
 }
 
 void BasicGameFlow::on_move_right() {
   if (!isPaused()) {
     std::lock_guard<std::mutex> lock_game(m_game_mutex);
     m_game->moveRight();
+    draw();
   }
-
-  draw();
 }
 
 void BasicGameFlow::on_rotate_left() {
   if (!isPaused()) {
     std::lock_guard<std::mutex> lock_game(m_game_mutex);
     m_game->rotateLeft();
+    draw();
   }
-
-  draw();
 }
 
 void BasicGameFlow::on_rotate_right() {
   if (!isPaused()) {
     std::lock_guard<std::mutex> lock_game(m_game_mutex);
     m_game->rotateRight();
+    draw();
   }
-
-  draw();
 }
 
-void BasicGameFlow::on_drop() {
+int BasicGameFlow::on_drop() {
   if (!isPaused()) {
     std::lock_guard<std::mutex> lock_game(m_game_mutex);
-    m_game->drop();
+    int res = m_game->drop();
+    draw();
+    return res;
   }
 
-  draw();
+  return 0;
 }
 
 void BasicGameFlow::on_game_over() {

@@ -27,7 +27,10 @@ namespace tetris {
 DefaultGame::DefaultGame(std::shared_ptr<GameBoard> gameBoard,
                          std::vector<std::shared_ptr<Shape>> shapes)
   : Game(),
-    m_game_board(gameBoard), m_shapes(shapes), m_game_over(false)
+    m_game_board(gameBoard),
+    m_shapes(shapes),
+    m_next_shape(nullptr),
+    m_game_over(false)
 {
   if (m_game_board == nullptr) {
     throw std::invalid_argument("A null game board is not allowed.");
@@ -64,7 +67,7 @@ void DefaultGame::newGame() {
   m_game_board->clear();
   m_game_over = false;
 
-  newShape();
+  setNewShape();
 }
 
 int DefaultGame::advance() {
@@ -84,7 +87,7 @@ int DefaultGame::advance() {
     }
 
     // Choosing a new shape.
-    newShape();
+    setNewShape();
   } else {
     m_game_board->moveDown();
   }
@@ -121,21 +124,34 @@ void DefaultGame::draw(DrawingContextInfo& dci) const {
   }
 }
 
-void DefaultGame::newShape() {
+void DefaultGame::setNewShape() {
   unsigned int index = rand() % m_shapes.size();
   m_game_board->setCurrentShape(m_shapes.at(index)->clone());
 
+  if (m_next_shape == nullptr) {
+    m_next_shape = chooseNewShape();
+    m_game_board->setCurrentShape(chooseNewShape());
+  } else {
+    m_game_board->setCurrentShape(m_next_shape);
+    m_next_shape = chooseNewShape();
+  }
 
   int vertical_coord = - std::min(m_game_board->getHiddenRows(),
                                   get_lowest_block_of_current_shape());
 
   // It would be better in the middle.
   m_game_board->setCurrentShapePosition(Coords(vertical_coord, 0));
+}
+
+std::shared_ptr<Shape> DefaultGame::chooseNewShape() const {
+  unsigned int index = rand() % m_shapes.size();
+  std::shared_ptr<Shape> res = m_shapes.at(index)->clone();
 
   // Random rotations.
   int  rotate_times = rand() % 4;
-  for (int i = 0; i < rotate_times; ++i) { m_game_board->rotateRight(); }
+  for (int i = 0; i < rotate_times; ++i) { res->rotateRight(); }
 
+  return res;
 }
 
 bool DefaultGame::top_row_not_empty() {

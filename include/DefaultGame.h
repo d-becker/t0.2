@@ -47,7 +47,8 @@ class DefaultGame : public Game
     virtual void draw(DrawingContextInfo& dci) const override;
   protected:
   private:
-    void newShape();
+    void setNewShape();
+    std::shared_ptr<Shape> chooseNewShape() const;
     bool top_row_not_empty();
     int get_lowest_block_of_current_shape() const; // The row number of the
                                                    // lowest block of the
@@ -55,6 +56,7 @@ class DefaultGame : public Game
 
     std::shared_ptr<GameBoard> m_game_board;
     std::vector<std::shared_ptr<Shape>> m_shapes;
+    std::shared_ptr<Shape> m_next_shape;
     bool m_game_over;
 };
 

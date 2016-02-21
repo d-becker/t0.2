@@ -26,6 +26,14 @@ namespace tetris {
 
 typedef int InputID;
 
+/**
+ * The interface that coordinates the game flow and responds to user input.
+ * Input handling is done through registering commands which consist of a name
+ * (a string identifier) and a function object. After that, an \c InputID
+ * can be connected to the command. When the \c processInput method is called
+ * with that \c InputID, the command that is connected to that InputID
+ * is looked up and its function object is called.
+ */
 class GameFlow
 {
   public:

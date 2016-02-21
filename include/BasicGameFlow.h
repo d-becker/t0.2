@@ -58,13 +58,18 @@ class BasicGameFlow : public GameFlow
     virtual bool isPaused() const override;
 
   protected:
-    virtual void on_advance();
-    virtual void on_move_down();
+    /**
+     * The methods that return an \c int return the number of filled
+     * and so removed rows.
+     */
+
+    virtual int on_advance();
+    virtual int on_move_down();
     virtual void on_move_left();
     virtual void on_move_right();
     virtual void on_rotate_left();
     virtual void on_rotate_right();
-    virtual void on_drop();
+    virtual int on_drop();
 
     virtual void on_game_over();
   private:

@@ -25,7 +25,7 @@ namespace tetris {
 /**
  * An interface for the class that provides the high-level functionality for
  * updating the game. The GUI event handlers should normally call the methods
- * of this class.
+ * of this class through commands registered with the \c GameFlow interface.
  */
 class Game : public Drawable<Game>
 {
