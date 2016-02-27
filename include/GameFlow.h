@@ -21,6 +21,7 @@
 #include <string>
 
 #include "Game.h"
+#include "locking_shared_ptr.h"
 
 namespace tetris {
 
@@ -40,13 +41,13 @@ class GameFlow
     virtual ~GameFlow() {}
 
     /**
-     * Returns a (smart) pointer to the \c Game object associated with
+     * Returns a \c locking_shared_ptr to the \c Game object associated with
      * this object.
      *
      * \return A (smart) pointer to the \c Game object associated with
      *         this object.
      */
-    virtual std::shared_ptr<const Game> getGame() const = 0;
+    virtual locking_shared_ptr<const Game> getGame() const = 0;
 
     /**
      * Sets the \c Game object associated with this object to \a game.

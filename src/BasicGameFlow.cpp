@@ -48,9 +48,8 @@ BasicGameFlow::~BasicGameFlow()
   //dtor
 }
 
-std::shared_ptr<const Game> BasicGameFlow::getGame() const {
-  std::lock_guard<std::mutex> game_lock(m_game_mutex);
-  return m_game;
+locking_shared_ptr<const Game> BasicGameFlow::getGame() const {
+  return locking_shared_ptr<const Game>(m_game, m_game_mutex);
 }
 
 void BasicGameFlow::setGame(std::shared_ptr<Game> game) {
@@ -204,8 +203,12 @@ int BasicGameFlow::on_advance() {
     return 0;
   }
 
-  std::lock_guard<std::mutex> lock_game(m_game_mutex);
-  int res = m_game->advance();
+  int res = 0;
+  {
+    std::lock_guard<std::mutex> lock_game(m_game_mutex);
+    res = m_game->advance();
+  }
+
   draw();
   return res;
 }
@@ -216,32 +219,44 @@ int BasicGameFlow::on_move_down() {
 
 void BasicGameFlow::on_move_left() {
   if (!isPaused()) {
-    std::lock_guard<std::mutex> lock_game(m_game_mutex);
-    m_game->moveLeft();
+    {
+      std::lock_guard<std::mutex> lock_game(m_game_mutex);
+      m_game->moveLeft();
+    }
+
     draw();
   }
 }
 
 void BasicGameFlow::on_move_right() {
   if (!isPaused()) {
-    std::lock_guard<std::mutex> lock_game(m_game_mutex);
-    m_game->moveRight();
+    {
+      std::lock_guard<std::mutex> lock_game(m_game_mutex);
+      m_game->moveRight();
+    }
+
     draw();
   }
 }
 
 void BasicGameFlow::on_rotate_left() {
   if (!isPaused()) {
-    std::lock_guard<std::mutex> lock_game(m_game_mutex);
-    m_game->rotateLeft();
+    {
+      std::lock_guard<std::mutex> lock_game(m_game_mutex);
+      m_game->rotateLeft();
+    }
+
     draw();
   }
 }
 
 void BasicGameFlow::on_rotate_right() {
   if (!isPaused()) {
-    std::lock_guard<std::mutex> lock_game(m_game_mutex);
-    m_game->rotateRight();
+    {
+      std::lock_guard<std::mutex> lock_game(m_game_mutex);
+      m_game->rotateRight();
+    }
+
     draw();
   }
 }
@@ -253,8 +268,12 @@ int BasicGameFlow::on_drop() {
   }
 
   if (!isPaused()) {
-    std::lock_guard<std::mutex> lock_game(m_game_mutex);
-    int res = m_game->drop();
+    int res = 0;
+    {
+      std::lock_guard<std::mutex> lock_game(m_game_mutex);
+      res = m_game->drop();
+    }
+
     draw();
     return res;
   }

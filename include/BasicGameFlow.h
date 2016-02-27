@@ -22,6 +22,7 @@
 #include <mutex>
 #include <unordered_map>
 
+#include "locking_shared_ptr.h"
 #include "Timeout.h"
 
 namespace tetris {
@@ -33,7 +34,7 @@ class BasicGameFlow : public GameFlow
     BasicGameFlow(const BasicGameFlow& other) = delete;
     virtual ~BasicGameFlow();
 
-    virtual std::shared_ptr<const Game> getGame() const override;
+    virtual locking_shared_ptr<const Game> getGame() const override;
     virtual void setGame(std::shared_ptr<Game> game) override;
 
     virtual bool makeNewCommand(std::string name,
