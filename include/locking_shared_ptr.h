@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2016 Daniel Becker <beckerdaniel.dani@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 3 as published
+ * by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #ifndef LOCKING_SHARED_PTR_H
 #define LOCKING_SHARED_PTR_H
 
@@ -8,7 +24,7 @@ namespace tetris {
 
 /**
  * A smart pointer that during its lifetime provides exclusive access to the
- * object pointed to in a RAII way. This is achieved through a mutex, so any
+ * object pointed to in RAII style. This is achieved through a mutex, so any
  * other object that has a pointer or reference to the object pointed to should
  * also use the same mutex for the exclusive access to be possible.
  * The constructor of this class locks the provided mutex and the destructor
@@ -53,7 +69,6 @@ class locking_shared_ptr
       return m_shared_ptr.get();
     }
 
-  protected:
   private:
     std::shared_ptr<T> m_shared_ptr;
     Mutex& m_lock;

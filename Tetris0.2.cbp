@@ -186,6 +186,7 @@
 		</Unit>
 		<Unit filename="include/TetrominoZ.h" />
 		<Unit filename="include/Timeout.h" />
+		<Unit filename="include/locking_shared_ptr.h" />
 		<Unit filename="main.cpp">
 			<Option target="Debug" />
 		</Unit>
