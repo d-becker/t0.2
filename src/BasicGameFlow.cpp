@@ -247,6 +247,11 @@ void BasicGameFlow::on_rotate_right() {
 }
 
 int BasicGameFlow::on_drop() {
+  if (isGameOver()) {
+    on_game_over();
+    return 0;
+  }
+
   if (!isPaused()) {
     std::lock_guard<std::mutex> lock_game(m_game_mutex);
     int res = m_game->drop();
